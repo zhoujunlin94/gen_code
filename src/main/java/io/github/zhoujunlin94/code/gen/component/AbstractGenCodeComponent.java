@@ -4,7 +4,9 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.extra.template.Template;
 import cn.hutool.setting.Setting;
+import io.github.zhoujunlin94.code.gen.constant.CommonConstant;
 import io.github.zhoujunlin94.code.gen.constant.EntityConstant;
+import io.github.zhoujunlin94.code.gen.constant.HandlerConstant;
 import io.github.zhoujunlin94.code.gen.constant.MapperConstant;
 import lombok.SneakyThrows;
 
@@ -23,14 +25,20 @@ public abstract class AbstractGenCodeComponent {
         String entityName = getEntityName(table, context);
         context.put(EntityConstant.ENTITY_NAME, entityName);
 
-        String entityClass = context.get(EntityConstant.PACKAGE_NAME_KEY) + "." + entityName;
+        String entityClass = context.get(EntityConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + entityName;
         context.put(EntityConstant.ENTITY_CLASS, entityClass);
 
-        String mapperName = getMapperName(entityName);
+        String mapperName = entityName + MapperConstant.SUFFIX;
         context.put(MapperConstant.MAPPER_NAME, mapperName);
 
-        String mapperClass = context.get(MapperConstant.PACKAGE_NAME_KEY) + "." + mapperName;
+        String mapperClass = context.get(MapperConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + mapperName;
         context.put(MapperConstant.MAPPER_CLASS, mapperClass);
+
+        String handlerName = entityName + HandlerConstant.SUFFIX;
+        context.put(HandlerConstant.HANDLER_NAME, handlerName);
+
+        String handlerClass = context.get(HandlerConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + handlerName;
+        context.put(HandlerConstant.HANDLER_CLASS, handlerClass);
     }
 
     protected abstract Template getTemplate();
@@ -54,22 +62,18 @@ public abstract class AbstractGenCodeComponent {
         return entityName;
     }
 
-    protected static String getMapperName(String entityName) {
-        return entityName + "Mapper";
-    }
-
     protected void buildImportTypes(List<String> importTypes, Map<String, Object> bindingMap) {
         List<String> externalTypes = new ArrayList<>();
         List<String> internalTypes = new ArrayList<>();
         importTypes.forEach(importType -> {
-            if (StrUtil.startWith(importType, "java")) {
+            if (StrUtil.startWith(importType, CommonConstant.JAVA)) {
                 internalTypes.add(importType);
             } else {
                 externalTypes.add(importType);
             }
         });
-        bindingMap.put("externalTypes", externalTypes);
-        bindingMap.put("internalTypes", internalTypes);
+        bindingMap.put(CommonConstant.EXTERNAL_TYPES, externalTypes);
+        bindingMap.put(CommonConstant.INTERNAL_TYPES, internalTypes);
     }
 
 }

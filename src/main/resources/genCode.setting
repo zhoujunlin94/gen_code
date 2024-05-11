@@ -12,5 +12,11 @@ mapperDestPath = D:\github\gen_code\src\main\java\io\github\zhoujunlin94\code\ge
 mapperPackageName = io.github.zhoujunlin94.code.gen.example.mapper
 # TKMapper类名
 tkMapper = io.github.zhoujunlin94.meet.tk_mybatis.mapper.TKMapper
+
 # Mapper.xml路径
 mapperXmlDestPath = D:\github\gen_code\src\main\resources\mybatis
+
+# handler包名
+handlerPackageName = io.github.zhoujunlin94.code.gen.example.handler
+handlerDestPath = D:\github\gen_code\src\main\java\io\github\zhoujunlin94\code\gen\example\handler
+tkHandler = io.github.zhoujunlin94.meet.tk_mybatis.handler.TKHandler

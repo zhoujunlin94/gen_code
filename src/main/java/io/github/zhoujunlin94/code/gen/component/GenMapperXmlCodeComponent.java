@@ -32,9 +32,9 @@ public class GenMapperXmlCodeComponent extends AbstractGenCodeComponent {
     @Override
     protected Map<String, Object> buildBindingMap(Table table, Setting context) {
         Map<String, Object> retMap = new HashMap<>();
-        retMap.put("mapperClass", context.get(MapperConstant.MAPPER_CLASS));
-        retMap.put("entityClass", context.get(EntityConstant.ENTITY_CLASS));
-        retMap.put("fieldList", fieldList(table.getColumns()));
+        retMap.put(MapperConstant.MAPPER_CLASS, context.get(MapperConstant.MAPPER_CLASS));
+        retMap.put(EntityConstant.ENTITY_CLASS, context.get(EntityConstant.ENTITY_CLASS));
+        retMap.put(EntityConstant.FIELD_LIST, fieldList(table.getColumns()));
         return retMap;
     }
 
@@ -43,7 +43,7 @@ public class GenMapperXmlCodeComponent extends AbstractGenCodeComponent {
         String mapperXmlDestPath = context.get(MapperXmlConstant.DEST_PATH_KEY);
         FileUtil.mkdir(mapperXmlDestPath);
         String mapperName = context.get(MapperConstant.MAPPER_NAME);
-        return mapperXmlDestPath + "/" + mapperName + ".xml";
+        return mapperXmlDestPath + StrUtil.SLASH + mapperName + StrUtil.DOT + CommonConstant.XML;
     }
 
     private List<Field> fieldList(Collection<Column> columns) {

@@ -17,6 +17,8 @@ public class EntityConstant {
     public static final String ENTITY_NAME = "entityName";
     public static final String ENTITY_CLASS = "entityClass";
 
+    public static final String FIELD_LIST = "fieldList";
+
     public static final Map<String, String> IMPORT_TYPE_MAP = new HashMap<>();
     public static final Map<String, String> FIELD_TYPE_MAP = new HashMap<>();
 

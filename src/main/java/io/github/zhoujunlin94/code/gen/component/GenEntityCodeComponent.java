@@ -29,23 +29,23 @@ public class GenEntityCodeComponent extends AbstractGenCodeComponent {
         String entityDestPath = context.get(EntityConstant.DEST_PATH_KEY);
         FileUtil.mkdir(entityDestPath);
         String entityName = context.get(EntityConstant.ENTITY_NAME);
-        return entityDestPath + "/" + entityName + ".java";
+        return entityDestPath + StrUtil.SLASH + entityName + StrUtil.DOT + CommonConstant.JAVA;
     }
 
     @Override
     protected Map<String, Object> buildBindingMap(Table table, Setting context) {
         Map<String, Object> retMap = new HashMap<>();
 
-        retMap.put("packageName", context.get(EntityConstant.PACKAGE_NAME_KEY));
+        retMap.put(CommonConstant.PACKAGE_NAME, context.get(EntityConstant.PACKAGE_NAME_KEY));
 
         Collection<Column> columns = table.getColumns();
         buildImportTypes(importList(columns), retMap);
 
-        retMap.put("tableName", table.getTableName());
+        retMap.put(CommonConstant.TABLE_NAME, table.getTableName());
 
-        retMap.put("entityName", context.get(EntityConstant.ENTITY_NAME));
+        retMap.put(EntityConstant.ENTITY_NAME, context.get(EntityConstant.ENTITY_NAME));
 
-        retMap.put("fieldList", fieldList(columns));
+        retMap.put(EntityConstant.FIELD_LIST, fieldList(columns));
         return retMap;
     }
 
