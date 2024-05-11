@@ -1,11 +1,11 @@
 # 表名
-table = scrm_book
+table = test_table
 # 数据库实体类生成路径
 entityDestPath = D:\github\gen_code\src\main\java\io\github\zhoujunlin94\code\gen\example\entity
 # 数据库实体类包名
 entityPackageName = io.github.zhoujunlin94.code.gen.example.entity
 # 移除数据库实体类前缀
-entityRemovePrefix = scrm
+entityRemovePrefix = test
 # mapper接口路径
 mapperDestPath = D:\github\gen_code\src\main\java\io\github\zhoujunlin94\code\gen\example\mapper
 # mapper接口报名

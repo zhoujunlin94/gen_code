@@ -1,11 +1,11 @@
 #------------------------------------------------------------------------------------------
 ## 基本配置信息
 # JDBC URL，根据不同的数据库，使用相应的JDBC连接字符串
-url = jdbc:mysql://dev.mysql.gaodunwangxiao.com:3306/scrm?useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&useUnicode=true&autoReconnect=true&failOverReadOnly=false&useAffectedRows=true
+url = jdbc:mysql://127.0.0.1:3306/test?useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&useUnicode=true&autoReconnect=true&failOverReadOnly=false&useAffectedRows=true
 # 用户名，此处也可以使用 user 代替
-username = gaodun_test
+username = root
 # 密码，此处也可以使用 pass 代替
-password = 414639e58d
+password = root
 
 # JDBC驱动名，可选（Hutool会自动识别）
 driver = com.mysql.cj.jdbc.Driver
