@@ -18,7 +18,7 @@ public class GenCodeApp {
 
     public static final List<AbstractGenCodeComponent> GEN_CODE_COMPONENTS = CollUtil.newArrayList(
             new GenEntityCodeComponent(), new GenMapperCodeComponent(), new GenMapperXmlCodeComponent(),
-            new GenHandlerCodeComponent()
+            new GenHandlerCodeComponent(), new GenDTOCodeComponent()
     );
 
     public static void run() {

@@ -7,6 +7,7 @@ import cn.hutool.db.meta.Table;
 import cn.hutool.extra.template.Template;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.CommonConstant;
+import io.github.zhoujunlin94.code.gen.constant.DTOConstant;
 import io.github.zhoujunlin94.code.gen.constant.EntityConstant;
 import io.github.zhoujunlin94.code.gen.dto.Field;
 
@@ -17,63 +18,63 @@ import java.util.stream.Collectors;
  * @author zhoujunlin
  * @date 2024-05-09-17:29
  */
-public class GenEntityCodeComponent extends AbstractGenCodeComponent {
+public class GenDTOCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected Template getTemplate() {
-        return CommonConstant.ENGINE.getTemplate(EntityConstant.TEMPLATE_NAME);
+        return CommonConstant.ENGINE.getTemplate(DTOConstant.DTO_TEMPLATE_NAME);
     }
 
     @Override
     protected String getDestFileName(Setting context) {
-        String destPath = buildDestPath(context, context.get(EntityConstant.PACKAGE_NAME_KEY));
+        String destPath = buildDestPath(context, context.get(DTOConstant.PACKAGE_NAME_KEY));
         FileUtil.mkdir(destPath);
-        String entityName = context.get(EntityConstant.ENTITY_NAME);
-        return destPath + StrUtil.SLASH + entityName + StrUtil.DOT + CommonConstant.JAVA;
+        String dtoName = context.get(DTOConstant.DTO_NAME);
+        return destPath + StrUtil.SLASH + dtoName + StrUtil.DOT + CommonConstant.JAVA;
     }
 
     @Override
     protected Map<String, Object> buildBindingMap(Table table, Setting context) {
         Map<String, Object> retMap = new HashMap<>();
 
-        retMap.put(CommonConstant.PACKAGE_NAME, context.get(EntityConstant.PACKAGE_NAME_KEY));
+        retMap.put(CommonConstant.PACKAGE_NAME, context.get(DTOConstant.PACKAGE_NAME_KEY));
 
         Collection<Column> columns = table.getColumns();
         buildImportTypes(importList(columns), retMap);
 
-        retMap.put(CommonConstant.TABLE_NAME, table.getTableName());
-
-        retMap.put(EntityConstant.ENTITY_NAME, context.get(EntityConstant.ENTITY_NAME));
+        retMap.put(DTOConstant.DTO_NAME, context.get(DTOConstant.DTO_NAME));
+        retMap.put(DTOConstant.DTO_DESC, table.getComment() + " DTO");
 
         retMap.put(EntityConstant.FIELD_LIST, fieldList(columns));
+
         return retMap;
     }
 
     private List<Field> fieldList(Collection<Column> columns) {
-        return columns.stream().map(column -> {
-            Field field = new Field();
-            field.setPk(column.isPk());
-            field.setColumnName(column.getName());
-            field.setFieldType(EntityConstant.FIELD_TYPE_MAP.get(column.getTypeName()));
-            field.setFieldName(StrUtil.toCamelCase(column.getName()));
-            field.setComment(column.getComment());
-            return field;
-        }).collect(Collectors.toList());
+        return columns.stream()
+                .filter(column -> !EntityConstant.EXCLUDE_COLUMNS.contains(column.getName()))
+                .map(column -> {
+                    Field field = new Field();
+                    field.setComment(column.getComment());
+                    field.setFieldType(EntityConstant.FIELD_TYPE_MAP.get(column.getTypeName()));
+                    String columnName = column.getName();
+                    field.setFieldName(StrUtil.toCamelCase(columnName));
+                    return field;
+                }).collect(Collectors.toList());
     }
 
     private List<String> importList(Collection<Column> columns) {
         List<String> importList = new LinkedList<>();
-        importList.add("lombok.AllArgsConstructor");
-        importList.add("lombok.Builder");
+        importList.add("io.swagger.annotations.ApiModel");
+        importList.add("io.swagger.annotations.ApiModelProperty");
         importList.add("lombok.Data");
-        importList.add("lombok.NoArgsConstructor");
 
-        importList.add("javax.persistence.Column");
-        importList.add("javax.persistence.GeneratedValue");
-        importList.add("javax.persistence.Id");
-        importList.add("javax.persistence.Table");
+        importList.add("java.io.Serializable");
 
         columns.forEach(column -> {
+            if (EntityConstant.EXCLUDE_COLUMNS.contains(column.getName())) {
+                return;
+            }
             String columnType = EntityConstant.IMPORT_TYPE_MAP.get(column.getTypeName());
             if (StrUtil.isNotBlank(columnType) && !importList.contains(columnType)) {
                 importList.add(columnType);

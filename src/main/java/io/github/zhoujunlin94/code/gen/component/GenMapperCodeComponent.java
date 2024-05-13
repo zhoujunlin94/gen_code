@@ -41,11 +41,10 @@ public class GenMapperCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getDestFileName(Setting context) {
-        String mapperDestPath = context.get(CommonConstant.SRC_PATH) + StrUtil.SLASH +
-                StrUtil.replace(context.get(MapperConstant.PACKAGE_NAME_KEY), StrUtil.DOT, StrUtil.SLASH);
-        FileUtil.mkdir(mapperDestPath);
+        String destPath = buildDestPath(context, context.get(MapperConstant.PACKAGE_NAME_KEY));
+        FileUtil.mkdir(destPath);
         String mapperName = context.get(MapperConstant.MAPPER_NAME);
-        return mapperDestPath + StrUtil.SLASH + mapperName + StrUtil.DOT + CommonConstant.JAVA;
+        return destPath + StrUtil.SLASH + mapperName + StrUtil.DOT + CommonConstant.JAVA;
     }
 
     private List<String> importList(Setting context) {

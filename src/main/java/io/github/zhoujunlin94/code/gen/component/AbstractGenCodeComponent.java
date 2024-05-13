@@ -4,10 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.extra.template.Template;
 import cn.hutool.setting.Setting;
-import io.github.zhoujunlin94.code.gen.constant.CommonConstant;
-import io.github.zhoujunlin94.code.gen.constant.EntityConstant;
-import io.github.zhoujunlin94.code.gen.constant.HandlerConstant;
-import io.github.zhoujunlin94.code.gen.constant.MapperConstant;
+import io.github.zhoujunlin94.code.gen.constant.*;
 import lombok.SneakyThrows;
 
 import java.io.FileWriter;
@@ -39,6 +36,13 @@ public abstract class AbstractGenCodeComponent {
 
         String handlerClass = context.get(HandlerConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + handlerName;
         context.put(HandlerConstant.HANDLER_CLASS, handlerClass);
+
+
+        String dtoName = entityName + DTOConstant.SUFFIX;
+        context.put(DTOConstant.DTO_NAME, dtoName);
+
+        String dtoClass = context.get(DTOConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + dtoName;
+        context.put(DTOConstant.DTO_CLASS, dtoClass);
     }
 
     protected abstract Template getTemplate();
@@ -74,6 +78,11 @@ public abstract class AbstractGenCodeComponent {
         });
         bindingMap.put(CommonConstant.EXTERNAL_TYPES, externalTypes);
         bindingMap.put(CommonConstant.INTERNAL_TYPES, internalTypes);
+    }
+
+    protected String buildDestPath(Setting context, String packageName) {
+        return context.get(CommonConstant.SRC_PATH) + StrUtil.SLASH +
+                StrUtil.replace(packageName, StrUtil.DOT, StrUtil.SLASH);
     }
 
 }

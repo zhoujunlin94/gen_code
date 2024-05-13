@@ -43,11 +43,10 @@ public class GenHandlerCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getDestFileName(Setting context) {
-        String handlerDestPath = context.get(CommonConstant.SRC_PATH) + StrUtil.SLASH +
-                StrUtil.replace(context.get(HandlerConstant.PACKAGE_NAME_KEY), StrUtil.DOT, StrUtil.SLASH);
-        FileUtil.mkdir(handlerDestPath);
+        String destPath = buildDestPath(context, context.get(HandlerConstant.PACKAGE_NAME_KEY));
+        FileUtil.mkdir(destPath);
         String mapperName = context.get(HandlerConstant.HANDLER_NAME);
-        return handlerDestPath + StrUtil.SLASH + mapperName + StrUtil.DOT + CommonConstant.JAVA;
+        return destPath + StrUtil.SLASH + mapperName + StrUtil.DOT + CommonConstant.JAVA;
     }
 
     private List<String> importList(Setting context) {

@@ -11,4 +11,10 @@ public class DTOConstant {
     public static final String PAGE_QUERY_TEMPLATE_NAME = "PageQueryDTO.ftl";
     public static final String DTO_TEMPLATE_NAME = "DTO.ftl";
 
+    public static final String SUFFIX = "DTO";
+    public static final String DTO_NAME = "dtoName";
+    public static final String DTO_CLASS = "dtoClass";
+    public static final String DTO_DESC = "dtoDesc";
+
+
 }
