@@ -26,7 +26,8 @@ public class GenEntityCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getDestFileName(Setting context) {
-        String entityDestPath = context.get(EntityConstant.DEST_PATH_KEY);
+        String entityDestPath = context.get(CommonConstant.SRC_PATH) + StrUtil.SLASH +
+                StrUtil.replace(context.get(EntityConstant.PACKAGE_NAME_KEY), StrUtil.DOT, StrUtil.SLASH);
         FileUtil.mkdir(entityDestPath);
         String entityName = context.get(EntityConstant.ENTITY_NAME);
         return entityDestPath + StrUtil.SLASH + entityName + StrUtil.DOT + CommonConstant.JAVA;

@@ -11,7 +11,6 @@ public class EntityConstant {
 
     public static final String REMOVE_PREFIX_KEY = "entityRemovePrefix";
     public static final String PACKAGE_NAME_KEY = "entityPackageName";
-    public static final String DEST_PATH_KEY = "entityDestPath";
 
     public static final String TEMPLATE_NAME = "Entity.ftl";
     public static final String ENTITY_NAME = "entityName";

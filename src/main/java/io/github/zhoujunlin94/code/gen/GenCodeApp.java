@@ -8,7 +8,6 @@ import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.component.*;
 import io.github.zhoujunlin94.code.gen.constant.CommonConstant;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -31,7 +30,7 @@ public class GenCodeApp {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         run();
     }
 

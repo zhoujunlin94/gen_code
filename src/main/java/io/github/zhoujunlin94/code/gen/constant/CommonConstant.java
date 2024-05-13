@@ -16,6 +16,8 @@ public class CommonConstant {
     public static final String GEN_CODE_SETTING = "genCode.setting";
     public static final String TABLE = "table";
 
+    public static final String SRC_PATH = "srcPath";
+
     public static final String TABLE_NAME = "tableName";
     public static final String PACKAGE_NAME = "packageName";
     public static final String JAVA = "java";
