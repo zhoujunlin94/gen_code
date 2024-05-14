@@ -12,7 +12,6 @@ import java.util.Map;
  */
 public class EntityConstant {
 
-    public static final String REMOVE_PREFIX_KEY = "entityRemovePrefix";
     public static final String PACKAGE_NAME_KEY = "entityPackageName";
 
     public static final String ENTITY_NAME = "entityName";
@@ -20,7 +19,9 @@ public class EntityConstant {
 
     public static final String FIELD_LIST = "fieldList";
 
-    public static final List<String> EXCLUDE_COLUMNS = CollUtil.newArrayList("is_delete", "created_by", "created_at", "updated_by", "updated_at");
+    public static final List<String> EXCLUDE_COLUMNS = CollUtil.newArrayList(
+            "is_delete", "created_by", "created_at", "updated_by", "updated_at"
+    );
 
     public static final Map<String, String> IMPORT_TYPE_MAP = new HashMap<>();
     public static final Map<String, String> FIELD_TYPE_MAP = new HashMap<>();

@@ -19,7 +19,8 @@ import java.util.Map;
 public abstract class AbstractGenCodeComponent {
 
     public static void initContext(Table table, Setting context) {
-        String entityName = getEntityName(table, context);
+        String entityName = StrUtil.toCamelCase(table.getTableName());
+        entityName = StrUtil.removePrefix(entityName, context.get("entityRemovePrefix"));
         context.put(EntityConstant.ENTITY_NAME, entityName);
 
         String entityClass = context.get(EntityConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + entityName;
@@ -31,14 +32,14 @@ public abstract class AbstractGenCodeComponent {
         String mapperClass = context.get(MapperConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + mapperName;
         context.put(MapperConstant.MAPPER_CLASS, mapperClass);
 
-        String handlerName = entityName + HandlerConstant.SUFFIX;
+        String handlerName = entityName + "Handler";
         context.put(HandlerConstant.HANDLER_NAME, handlerName);
 
         String handlerClass = context.get(HandlerConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + handlerName;
         context.put(HandlerConstant.HANDLER_CLASS, handlerClass);
 
 
-        String dtoName = entityName + DTOConstant.SUFFIX;
+        String dtoName = entityName + "DTO";
         context.put(DTOConstant.DTO_NAME, dtoName);
 
         String dtoClass = context.get(DTOConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + dtoName;
@@ -62,12 +63,6 @@ public abstract class AbstractGenCodeComponent {
         Map<String, Object> bindingMap = buildBindingMap(table, context);
         String destFileName = getDestFileName(context);
         template.render(bindingMap, new FileWriter(destFileName));
-    }
-
-    protected static String getEntityName(Table table, Setting genCodeSetting) {
-        String entityName = StrUtil.toCamelCase(table.getTableName());
-        entityName = StrUtil.removePrefix(entityName, genCodeSetting.get(EntityConstant.REMOVE_PREFIX_KEY));
-        return entityName;
     }
 
     protected void buildImportTypes(List<String> importTypes, Map<String, Object> bindingMap) {
