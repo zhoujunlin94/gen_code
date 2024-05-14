@@ -3,7 +3,6 @@ package io.github.zhoujunlin94.code.gen.component;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Table;
-import cn.hutool.extra.template.Template;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.CommonConstant;
 import io.github.zhoujunlin94.code.gen.constant.EntityConstant;
@@ -22,8 +21,8 @@ import java.util.Map;
 public class GenHandlerCodeComponent extends AbstractGenCodeComponent {
 
     @Override
-    protected Template getTemplate() {
-        return CommonConstant.ENGINE.getTemplate(HandlerConstant.TEMPLATE_NAME);
+    protected String getTemplateName() {
+        return "Handler.ftl";
     }
 
     @Override

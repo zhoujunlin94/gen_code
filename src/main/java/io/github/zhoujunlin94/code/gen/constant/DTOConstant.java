@@ -8,8 +8,6 @@ public class DTOConstant {
 
     public static final String PACKAGE_NAME_KEY = "dtoPackageName";
 
-    public static final String PAGE_QUERY_TEMPLATE_NAME = "PageQueryDTO.ftl";
-    public static final String DTO_TEMPLATE_NAME = "DTO.ftl";
 
     public static final String SUFFIX = "DTO";
     public static final String DTO_NAME = "dtoName";

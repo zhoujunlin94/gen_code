@@ -9,8 +9,6 @@ public class HandlerConstant {
     public static final String PACKAGE_NAME_KEY = "handlerPackageName";
     public static final String TK_HANDLER_KEY = "tkHandler";
 
-    public static final String TEMPLATE_NAME = "Handler.ftl";
-
     public static final String SUFFIX = "Handler";
     public static final String HANDLER_NAME = "handlerName";
     public static final String HANDLER_CLASS = "handlerClass";

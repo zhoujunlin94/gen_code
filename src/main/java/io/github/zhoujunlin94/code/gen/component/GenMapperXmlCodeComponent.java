@@ -4,7 +4,6 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.Table;
-import cn.hutool.extra.template.Template;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.CommonConstant;
 import io.github.zhoujunlin94.code.gen.constant.EntityConstant;
@@ -25,8 +24,8 @@ import java.util.stream.Collectors;
 public class GenMapperXmlCodeComponent extends AbstractGenCodeComponent {
 
     @Override
-    protected Template getTemplate() {
-        return CommonConstant.ENGINE.getTemplate(MapperXmlConstant.TEMPLATE_NAME);
+    protected String getTemplateName() {
+        return "MapperXml.ftl";
     }
 
     @Override

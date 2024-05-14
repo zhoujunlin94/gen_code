@@ -6,7 +6,6 @@ import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.component.*;
-import io.github.zhoujunlin94.code.gen.constant.CommonConstant;
 
 import java.util.List;
 
@@ -22,8 +21,8 @@ public class GenCodeApp {
     );
 
     public static void run() {
-        Setting context = new Setting(CommonConstant.GEN_CODE_SETTING);
-        String tableName = context.get(CommonConstant.TABLE);
+        Setting context = new Setting("genCode.setting");
+        String tableName = context.get("table");
         Table table = MetaUtil.getTableMeta(DbUtil.getDs(), tableName);
         AbstractGenCodeComponent.initContext(table, context);
         GEN_CODE_COMPONENTS.forEach(component -> component.genCode(table, context));

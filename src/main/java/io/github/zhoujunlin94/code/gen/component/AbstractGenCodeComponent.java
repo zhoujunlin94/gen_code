@@ -25,7 +25,7 @@ public abstract class AbstractGenCodeComponent {
         String entityClass = context.get(EntityConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + entityName;
         context.put(EntityConstant.ENTITY_CLASS, entityClass);
 
-        String mapperName = entityName + MapperConstant.SUFFIX;
+        String mapperName = entityName + "Mapper";
         context.put(MapperConstant.MAPPER_NAME, mapperName);
 
         String mapperClass = context.get(MapperConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + mapperName;
@@ -45,7 +45,11 @@ public abstract class AbstractGenCodeComponent {
         context.put(DTOConstant.DTO_CLASS, dtoClass);
     }
 
-    protected abstract Template getTemplate();
+    protected Template getTemplate() {
+        return CommonConstant.ENGINE.getTemplate(getTemplateName());
+    }
+
+    protected abstract String getTemplateName();
 
     protected abstract Map<String, Object> buildBindingMap(Table table, Setting context);
 
@@ -76,8 +80,8 @@ public abstract class AbstractGenCodeComponent {
                 externalTypes.add(importType);
             }
         });
-        bindingMap.put(CommonConstant.EXTERNAL_TYPES, externalTypes);
-        bindingMap.put(CommonConstant.INTERNAL_TYPES, internalTypes);
+        bindingMap.put("externalTypes", externalTypes);
+        bindingMap.put("internalTypes", internalTypes);
     }
 
     protected String buildDestPath(Setting context, String packageName) {

@@ -11,8 +11,6 @@ public class MapperXmlConstant {
 
     public static final String DEST_PATH_KEY = "mapperXmlDestPath";
 
-    public static final String TEMPLATE_NAME = "MapperXml.ftl";
-
     public static final Map<String, String> TYPE_NAME_MAP = new HashMap<>();
 
     static {
