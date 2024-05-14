@@ -52,7 +52,7 @@ public class GenHandlerCodeComponent extends AbstractGenCodeComponent {
         List<String> importList = new LinkedList<>();
         importList.add(context.get(EntityConstant.ENTITY_CLASS));
         importList.add(context.get(MapperConstant.MAPPER_CLASS));
-        importList.add(context.get(HandlerConstant.TK_HANDLER_KEY));
+        importList.add(context.get("tkHandler"));
         importList.add("org.springframework.stereotype.Repository");
         return importList;
     }

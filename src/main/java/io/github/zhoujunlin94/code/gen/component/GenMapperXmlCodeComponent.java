@@ -39,7 +39,7 @@ public class GenMapperXmlCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getDestFileName(Setting context) {
-        String mapperXmlDestPath = context.get(MapperXmlConstant.DEST_PATH_KEY);
+        String mapperXmlDestPath = context.get("mapperXmlDestPath");
         FileUtil.mkdir(mapperXmlDestPath);
         String mapperName = context.get(MapperConstant.MAPPER_NAME);
         return mapperXmlDestPath + StrUtil.SLASH + mapperName + StrUtil.DOT + CommonConstant.XML;

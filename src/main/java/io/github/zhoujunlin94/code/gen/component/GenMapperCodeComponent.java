@@ -49,7 +49,7 @@ public class GenMapperCodeComponent extends AbstractGenCodeComponent {
     private List<String> importList(Setting context) {
         List<String> importList = new LinkedList<>();
         importList.add(context.get(EntityConstant.ENTITY_CLASS));
-        importList.add(context.get(MapperConstant.TK_MAPPER_KEY));
+        importList.add(context.get("tkMapper"));
         importList.add("org.apache.ibatis.annotations.Mapper");
         return importList;
     }

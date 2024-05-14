@@ -42,7 +42,7 @@ public class GenDTOCodeComponent extends AbstractGenCodeComponent {
         buildImportTypes(importList(columns), retMap);
 
         retMap.put(DTOConstant.DTO_NAME, context.get(DTOConstant.DTO_NAME));
-        retMap.put(DTOConstant.DTO_DESC, table.getComment() + " DTO");
+        retMap.put("dtoDesc", table.getComment() + " DTO");
 
         retMap.put(EntityConstant.FIELD_LIST, fieldList(columns));
 

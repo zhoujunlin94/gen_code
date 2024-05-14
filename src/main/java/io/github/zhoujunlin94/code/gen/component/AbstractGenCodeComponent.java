@@ -36,14 +36,14 @@ public abstract class AbstractGenCodeComponent {
         context.put(HandlerConstant.HANDLER_NAME, handlerName);
 
         String handlerClass = context.get(HandlerConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + handlerName;
-        context.put(HandlerConstant.HANDLER_CLASS, handlerClass);
+        context.put("handlerClass", handlerClass);
 
 
         String dtoName = entityName + "DTO";
         context.put(DTOConstant.DTO_NAME, dtoName);
 
         String dtoClass = context.get(DTOConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + dtoName;
-        context.put(DTOConstant.DTO_CLASS, dtoClass);
+        context.put("dtoClass", dtoClass);
     }
 
     protected Template getTemplate() {
@@ -80,7 +80,7 @@ public abstract class AbstractGenCodeComponent {
     }
 
     protected String buildDestPath(Setting context, String packageName) {
-        return context.get(CommonConstant.SRC_PATH) + StrUtil.SLASH +
+        return context.get("srcPath") + StrUtil.SLASH +
                 StrUtil.replace(packageName, StrUtil.DOT, StrUtil.SLASH);
     }
 

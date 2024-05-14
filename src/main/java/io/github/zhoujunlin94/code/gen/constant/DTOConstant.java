@@ -8,10 +8,6 @@ public class DTOConstant {
 
     public static final String PACKAGE_NAME_KEY = "dtoPackageName";
 
-
     public static final String DTO_NAME = "dtoName";
-    public static final String DTO_CLASS = "dtoClass";
-    public static final String DTO_DESC = "dtoDesc";
-
 
 }

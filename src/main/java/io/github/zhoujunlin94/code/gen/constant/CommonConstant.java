@@ -13,12 +13,9 @@ public class CommonConstant {
     public static final TemplateConfig TEMPLATE_CONFIG = new TemplateConfig("templates", TemplateConfig.ResourceMode.CLASSPATH);
     public static final TemplateEngine ENGINE = TemplateUtil.createEngine(TEMPLATE_CONFIG);
 
-    public static final String SRC_PATH = "srcPath";
-
-    public static final String TABLE_NAME = "tableName";
     public static final String PACKAGE_NAME = "packageName";
-    public static final String JAVA = "java";
 
+    public static final String JAVA = "java";
     public static final String XML = "xml";
 
 }

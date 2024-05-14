@@ -40,7 +40,7 @@ public class GenEntityCodeComponent extends AbstractGenCodeComponent {
         Collection<Column> columns = table.getColumns();
         buildImportTypes(importList(columns), retMap);
 
-        retMap.put(CommonConstant.TABLE_NAME, table.getTableName());
+        retMap.put("tableName", table.getTableName());
 
         retMap.put(EntityConstant.ENTITY_NAME, context.get(EntityConstant.ENTITY_NAME));
 
