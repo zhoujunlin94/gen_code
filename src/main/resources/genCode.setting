@@ -3,6 +3,7 @@ table = test_table
 
 # Java代码存放目录
 srcPath = D:\github\gen_code\src\main\java
+
 # 数据库实体类包名
 entityPackageName = io.github.zhoujunlin94.code.gen.example.entity
 # 移除数据库实体类前缀
@@ -22,3 +23,6 @@ tkHandler = io.github.zhoujunlin94.meet.tk_mybatis.handler.TKHandler
 
 # DTO包名
 dtoPackageName = io.github.zhoujunlin94.code.gen.example.dto
+
+# VO包名
+voPackageName = io.github.zhoujunlin94.code.gen.example.vo

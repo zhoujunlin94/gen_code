@@ -10,4 +10,6 @@ public class DTOConstant {
 
     public static final String DTO_NAME = "dtoName";
 
+    public static final String DTO_CLASS = "dtoClass";
+
 }

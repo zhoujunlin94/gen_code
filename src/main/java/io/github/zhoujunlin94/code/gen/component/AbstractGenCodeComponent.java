@@ -43,7 +43,10 @@ public abstract class AbstractGenCodeComponent {
         context.put(DTOConstant.DTO_NAME, dtoName);
 
         String dtoClass = context.get(DTOConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + dtoName;
-        context.put("dtoClass", dtoClass);
+        context.put(DTOConstant.DTO_CLASS, dtoClass);
+
+        String voName = entityName + "VO";
+        context.put(VOConstant.VO_NAME, voName);
     }
 
     protected Template getTemplate() {
