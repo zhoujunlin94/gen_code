@@ -10,4 +10,6 @@ public class VOConstant {
 
     public static final String VO_NAME = "voName";
 
+    public static final String VO_CLASS = "voClass";
+
 }

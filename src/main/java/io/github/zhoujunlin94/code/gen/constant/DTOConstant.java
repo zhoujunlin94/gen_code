@@ -12,4 +12,8 @@ public class DTOConstant {
 
     public static final String DTO_CLASS = "dtoClass";
 
+    public static final String PAGE_QUERY_DTO_NAME = "pageQueryDTOName";
+
+    public static final String PAGE_QUERY_DTO_CLASS = "pageQueryDTOClass";
+
 }

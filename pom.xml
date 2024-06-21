@@ -17,17 +17,17 @@
         <dependency>
             <groupId>io.github.zhoujunlin94</groupId>
             <artifactId>meet-common</artifactId>
-            <version>1.1.1</version>
+            <version>1.1.5</version>
         </dependency>
         <dependency>
             <groupId>io.github.zhoujunlin94</groupId>
             <artifactId>meet-tk_mybatis</artifactId>
-            <version>1.1.1</version>
+            <version>1.1.5</version>
         </dependency>
         <dependency>
             <groupId>io.github.zhoujunlin94</groupId>
             <artifactId>meet-web</artifactId>
-            <version>1.1.1</version>
+            <version>1.1.5</version>
         </dependency>
         <dependency>
             <groupId>org.freemarker</groupId>

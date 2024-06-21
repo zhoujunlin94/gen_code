@@ -45,8 +45,19 @@ public abstract class AbstractGenCodeComponent {
         String dtoClass = context.get(DTOConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + dtoName;
         context.put(DTOConstant.DTO_CLASS, dtoClass);
 
+        String pageQueryDtoName = entityName + "PageQueryDTO";
+        context.put(DTOConstant.PAGE_QUERY_DTO_NAME, pageQueryDtoName);
+
+        String pageQueryDtoClass = context.get(DTOConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + pageQueryDtoName;
+        context.put(DTOConstant.PAGE_QUERY_DTO_CLASS, pageQueryDtoClass);
+
         String voName = entityName + "VO";
         context.put(VOConstant.VO_NAME, voName);
+
+        String voClass = context.get(VOConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + voName;
+        context.put(VOConstant.VO_CLASS, voClass);
+
+
     }
 
     protected Template getTemplate() {

@@ -24,5 +24,8 @@ tkHandler = io.github.zhoujunlin94.meet.tk_mybatis.handler.TKHandler
 # DTO包名
 dtoPackageName = io.github.zhoujunlin94.code.gen.example.dto
 
+PageQuery = io.github.zhoujunlin94.meet.common.pojo.PageParam
+
 # VO包名
 voPackageName = io.github.zhoujunlin94.code.gen.example.vo
+
