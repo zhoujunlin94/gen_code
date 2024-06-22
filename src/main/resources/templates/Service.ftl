@@ -10,12 +10,12 @@ package ${packageName};
 
 public interface ${serviceName} {
 
-void add(${dtoName} paramDTO, Integer loginUserId);
+    void add(${dtoName} paramDTO, Integer loginUserId);
 
-void update(${dtoName} paramDTO, Integer loginUserId);
+    void update(${dtoName} paramDTO, Integer loginUserId);
 
-${dtoName} detail(Integer id);
+    ${dtoName} detail(Integer id);
 
-PageInfo<${voName}> page(${pageQueryDTOName} pageQueryDTO);
+    PageInfo<${voName}> page(${pageQueryDTOName} pageQueryDTO);
 
 }

@@ -22,6 +22,9 @@ public abstract class AbstractGenCodeComponent {
         String entityName = StrUtil.toCamelCase(table.getTableName());
         entityName = StrUtil.removePrefix(entityName, context.get("entityRemovePrefix"));
         context.put(EntityConstant.ENTITY_NAME, entityName);
+        context.put("camelCaseEntityName",
+                StrUtil.toCamelCase(StrUtil.removePrefix(table.getTableName(), context.get("entityRemovePrefix")), '-')
+        );
 
         String entityClass = context.get(EntityConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + entityName;
         context.put(EntityConstant.ENTITY_CLASS, entityClass);
@@ -65,6 +68,9 @@ public abstract class AbstractGenCodeComponent {
 
         String serviceImplName = entityName + "ServiceImpl";
         context.put(ServiceConstant.SERVICE_IMPL_NAME, serviceImplName);
+
+        String endpointName = entityName + "Endpoint";
+        context.put(EndpointConstant.ENDPOINT_NAME, endpointName);
 
     }
 

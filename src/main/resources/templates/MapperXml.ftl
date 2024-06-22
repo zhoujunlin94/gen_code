@@ -3,11 +3,11 @@
 <mapper namespace="${mapperClass}">
     <resultMap id="BaseResultMap" type="${entityClass}">
         <#list fieldList as field>
-        <#if field.pk >
+            <#if field.pk >
         <id column="${field.columnName}" jdbcType="${field.typeName}" property="${field.fieldName}"/>
-        <#else>
+            <#else>
         <result column="${field.columnName}" jdbcType="${field.typeName}" property="${field.fieldName}"/>
-        </#if>
+            </#if>
         </#list>
     </resultMap>
 

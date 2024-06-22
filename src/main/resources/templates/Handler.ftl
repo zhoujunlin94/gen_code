@@ -11,9 +11,9 @@ package ${packageName};
 @Repository
 public class ${handlerName} extends TKHandler<${mapperName}, ${entityName}> {
 
-public List<${entityName}> page(${pageQueryDTOName} pageQuery){
-Weekend<${entityName}> weekend = thisWeekend();
-return this.baseMapper.selectByExample(weekend);
-}
+    public List<${entityName}> page(${pageQueryDTOName} pageQuery){
+        Weekend<${entityName}> weekend = thisWeekend();
+        return this.baseMapper.selectByExample(weekend);
+    }
 
 }
