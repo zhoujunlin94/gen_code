@@ -1,14 +1,17 @@
-package ${packageName};
+package ${PackageName};
 
-<#list externalTypes as importType>
+<#list ExternalTypes as importType>
 import ${importType};
 </#list>
 
-<#list internalTypes as importType>
+<#list InternalTypes as importType>
 import ${importType};
 </#list>
 
+/**
+* @author ${Author}
+*/
 @Mapper
-public interface ${mapperName} extends TKMapper<${entityName}> {
+public interface ${MapperName} extends TKMapper<${EntityName}> {
 
 }

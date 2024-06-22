@@ -19,7 +19,7 @@ public class GenMapperCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getTemplateName() {
-        return "Mapper.ftl";
+        return Constant.FTL.MAPPER;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class GenMapperCodeComponent extends AbstractGenCodeComponent {
     private List<String> importList(Setting context) {
         List<String> importList = new LinkedList<>();
         importList.add(context.get(Constant.Entity.ENTITY_CLASS));
-        importList.add(context.get("tkMapper"));
+        importList.add(context.get(Constant.Mapper.TK_MAPPER_CLASS_KEY));
         importList.add("org.apache.ibatis.annotations.Mapper");
         return importList;
     }

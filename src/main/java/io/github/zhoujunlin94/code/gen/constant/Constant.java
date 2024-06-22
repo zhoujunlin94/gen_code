@@ -61,6 +61,7 @@ public class Constant {
 
     public static class Mapper {
         public static final String PACKAGE_NAME_KEY = "MapperPackageName";
+        public static final String TK_MAPPER_CLASS_KEY = "TKMapperClass";
 
         public static final String MAPPER = "Mapper";
         public static final String MAPPER_NAME = "MapperName";
@@ -133,6 +134,7 @@ public class Constant {
 
     public static class FTL {
         public static final String ENTITY = "Entity.ftl";
+        public static final String MAPPER = "Mapper.ftl";
         public static final String DTO = "DTO.ftl";
         public static final String PAGE_QUERY_DTO = "PageQueryDTO.ftl";
     }
