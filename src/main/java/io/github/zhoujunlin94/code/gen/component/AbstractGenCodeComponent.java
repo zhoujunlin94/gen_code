@@ -70,6 +70,8 @@ public abstract class AbstractGenCodeComponent {
 
         String endpointName = entityName + "Endpoint";
         context.put(Endpoint.ENDPOINT_NAME, endpointName);
+        String endpointPackageName = context.get(Endpoint.KEY_PACKAGE_NAME) + StrUtil.DOT + entityName.toLowerCase();
+        context.put(Endpoint.ENDPOINT_PACKAGE, endpointPackageName);
     }
 
     protected Template getTemplate() {

@@ -9,8 +9,8 @@ import ${importType};
 </#list>
 
 /**
-* @author ${Author}
-*/
+ * @author ${Author}
+ */
 @Data
 @ApiModel(description = "${VODesc}")
 public class ${VOName} extends ${DTOName} {

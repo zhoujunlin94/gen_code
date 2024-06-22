@@ -51,9 +51,8 @@ public class GenPageQueryDTOCodeComponent extends AbstractGenCodeComponent {
         List<String> importList = new LinkedList<>();
         importList.add("io.swagger.annotations.ApiModel");
         importList.add("lombok.Data");
-        importList.add(context.get("PageQuery"));
+        importList.add(context.get(DTO.KEY_PAGE_QUERY_CLASS));
         return importList;
     }
-
 
 }

@@ -9,8 +9,8 @@ import ${importType};
 </#list>
 
 /**
-* @author ${Author}
-*/
+ * @author ${Author}
+ */
 @Data
 @Builder
 @NoArgsConstructor

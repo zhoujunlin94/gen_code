@@ -9,8 +9,8 @@ import ${importType};
 </#list>
 
 /**
-* @author ${Author}
-*/
+ * @author ${Author}
+ */
 public interface ${ServiceName} {
 
     void add(${DTOName} paramDTO, Integer loginUserId);

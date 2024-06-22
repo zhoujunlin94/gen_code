@@ -1,5 +1,5 @@
 # 表名  多个表明,号分隔
-tables = test_table
+tables = shop_order
 
 # Java代码存放目录
 SrcPath = /Users/zhoujunlin/work/code/github/gen_code/src/main/java
@@ -7,7 +7,7 @@ SrcPath = /Users/zhoujunlin/work/code/github/gen_code/src/main/java
 # 数据库实体类包名
 EntityPackageName = io.github.zhoujunlin94.code.gen.example.entity
 # 移除数据库实体类前缀
-EntityRemovePrefix = test
+EntityRemovePrefix = shop
 
 # mapper接口包名
 MapperPackageName = io.github.zhoujunlin94.code.gen.example.mapper
@@ -28,7 +28,7 @@ ServicePackageName = io.github.zhoujunlin94.code.gen.example.service
 EndPointPackageName = io.github.zhoujunlin94.code.gen.example.endpoint
 
 # Mapper.xml路径
-MapperXmlDestPath = D:\github\gen_code\src\main\resources\mybatis
+MapperXmlDestPath = /Users/zhoujunlin/work/code/github/gen_code/src/main/resources/mybatis
 
 
 # TKMapper类名

@@ -29,7 +29,7 @@ public class GenEndpointCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getDestFileName(Setting context) {
-        String destPath = buildDestPath(context, context.get(Endpoint.KEY_PACKAGE_NAME));
+        String destPath = buildDestPath(context, context.get(Endpoint.ENDPOINT_PACKAGE));
         FileUtil.mkdir(destPath);
         String endpointName = context.get(Endpoint.ENDPOINT_NAME);
         return destPath + StrUtil.SLASH + endpointName + StrUtil.DOT + Constant.JAVA;
@@ -39,9 +39,9 @@ public class GenEndpointCodeComponent extends AbstractGenCodeComponent {
     protected Map<String, Object> buildBindingMap(Table table, Setting context) {
         Map<String, Object> retMap = new HashMap<>();
 
-        retMap.put(Constant.PACKAGE_NAME, context.get(Endpoint.KEY_PACKAGE_NAME));
-        retMap.put("EndpointDesc", "B-" + context.get(Entity.CAMEL_CASE_ENTITY_NAME));
-        retMap.put(Entity.CAMEL_CASE_ENTITY_NAME, context.get(Entity.CAMEL_CASE_ENTITY_NAME));
+        retMap.put(Constant.PACKAGE_NAME, context.get(Endpoint.ENDPOINT_PACKAGE));
+        retMap.put("EndpointDesc", "B-" + context.get(Entity.ENTITY_NAME));
+        retMap.put(Entity.CAMEL_CASE_ENTITY_NAME, StrUtil.lowerFirst(context.get(Entity.ENTITY_NAME)));
         retMap.put(Endpoint.ENDPOINT_NAME, context.get(Endpoint.ENDPOINT_NAME));
 
         buildImportTypes(importList(context), retMap);

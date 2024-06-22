@@ -9,8 +9,8 @@ import ${importType};
 </#list>
 
 /**
-* @author ${Author}
-*/
+ * @author ${Author}
+ */
 @Data
 @ApiModel(description = "${PageQueryDTODesc}")
 public class ${PageQueryDTOName} extends ${PageQueryClass} {

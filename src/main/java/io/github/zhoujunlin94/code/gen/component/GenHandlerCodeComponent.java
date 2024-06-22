@@ -55,7 +55,7 @@ public class GenHandlerCodeComponent extends AbstractGenCodeComponent {
         importList.add(context.get(DTO.PAGE_QUERY_DTO_CLASS));
         importList.add(context.get(Entity.ENTITY_CLASS));
         importList.add(context.get(Mapper.MAPPER_CLASS));
-        importList.add(context.get("tkHandler"));
+        importList.add(context.get("TKHandlerClass"));
         importList.add("org.springframework.stereotype.Repository");
         importList.add("tk.mybatis.mapper.weekend.Weekend");
 

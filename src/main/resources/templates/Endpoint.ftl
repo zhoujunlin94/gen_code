@@ -9,13 +9,13 @@ import ${importType};
 </#list>
 
 /**
-* @author ${Author}
-*/
+ * @author ${Author}
+ */
 @Api(tags = {"${EndpointDesc}"})
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/${camel-case-entity-name}")
+@RequestMapping("/api/v1/${CamelCaseEntityName}")
 public class ${EndPointName} {
 
     private final ${ServiceName} ${lowerFirstServiceName};

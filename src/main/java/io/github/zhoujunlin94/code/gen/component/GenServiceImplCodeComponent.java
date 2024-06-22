@@ -66,7 +66,7 @@ public class GenServiceImplCodeComponent extends AbstractGenCodeComponent {
         importList.add(context.get(Handler.HANDLER_CLASS));
         importList.add(context.get(Service.SERVICE_CLASS));
         importList.add(context.get(VO.VO_CLASS));
-        importList.add(context.get("PageUtil"));
+        importList.add(context.get("PageUtilClass"));
         importList.add("lombok.RequiredArgsConstructor");
         importList.add("lombok.extern.slf4j.Slf4j");
         importList.add("org.springframework.stereotype.Service");

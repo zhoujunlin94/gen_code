@@ -9,8 +9,8 @@ import ${importType};
 </#list>
 
 /**
-* @author ${Author}
-*/
+ * @author ${Author}
+ */
 @Data
 @ApiModel(description = "${DTODesc}")
 public class ${DTOName} implements Serializable {

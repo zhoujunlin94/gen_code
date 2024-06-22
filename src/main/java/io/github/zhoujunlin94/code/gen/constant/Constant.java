@@ -27,7 +27,7 @@ public class Constant {
         public static final String KEY_PACKAGE_NAME = "EntityPackageName";
 
         public static final String ENTITY_NAME = "EntityName";
-        public static final String CAMEL_CASE_ENTITY_NAME = "camel-case-entity-name";
+        public static final String CAMEL_CASE_ENTITY_NAME = "CamelCaseEntityName";
         public static final String ENTITY_CLASS = "EntityClass";
 
         public static final List<String> EXCLUDE_COLUMNS = CollUtil.newArrayList(
@@ -100,13 +100,15 @@ public class Constant {
 
         public static final String SERVICE_NAME = "ServiceName";
         public static final String SERVICE_CLASS = "ServiceClass";
-        public static final String SERVICE_PACKAGE = "DTOPackage";
+        public static final String SERVICE_PACKAGE = "ServicePackage";
 
         public static final String SERVICE_IMPL_NAME = "ServiceImplName";
     }
 
     public static class Endpoint {
         public static final String KEY_PACKAGE_NAME = "EndPointPackageName";
+
+        public static final String ENDPOINT_PACKAGE = "EndPointPackage";
 
         public static final String ENDPOINT_NAME = "EndPointName";
     }

@@ -9,8 +9,8 @@ import ${importType};
 </#list>
 
 /**
-* @author ${Author}
-*/
+ * @author ${Author}
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -35,14 +35,14 @@ public class ${ServiceImplName} implements ${ServiceName} {
 
     @Override
     public ${DTOName} detail(Integer id) {
-        ${entityName} entity = ${lowerFirstHandlerName}.selectByPrimaryKey(id);
+        ${EntityName} entity = ${lowerFirstHandlerName}.selectByPrimaryKey(id);
         return BeanUtil.toBean(entity, ${DTOName}.class);
     }
 
     @Override
     public PageInfo<${VOName}> page(${PageQueryDTOName} pageQueryDTO) {
         PageInfo<${VOName}> entityPageInfo = PageHelper.startPage(pageQueryDTO.getPageNo(), pageQueryDTO.getPageSize())
-                .doSelectPageInfo(()-> ${lowerFirstHandlerName}.page(pageQueryDTO));
+                .doSelectPageInfo(() -> ${lowerFirstHandlerName}.page(pageQueryDTO));
 
         List<${VOName}> retList = entityPageInfo.getList().stream()
                 .map(entity -> BeanUtil.toBean(entity, ${VOName}.class)).collect(Collectors.toList());
