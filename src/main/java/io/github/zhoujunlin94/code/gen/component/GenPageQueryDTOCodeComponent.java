@@ -5,8 +5,8 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
-import io.github.zhoujunlin94.code.gen.constant.CommonConstant;
-import io.github.zhoujunlin94.code.gen.constant.DTOConstant;
+import io.github.zhoujunlin94.code.gen.constant.Constant;
+import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -21,29 +21,29 @@ public class GenPageQueryDTOCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getTemplateName() {
-        return "PageQueryDTO.ftl";
+        return Constant.FTL.PAGE_QUERY_DTO;
     }
 
     @Override
     protected String getDestFileName(Setting context) {
-        String destPath = buildDestPath(context, context.get(DTOConstant.PACKAGE_NAME_KEY));
+        String destPath = buildDestPath(context, context.get(Constant.DTO.PACKAGE_NAME_KEY));
         FileUtil.mkdir(destPath);
-        String pageQueryDtoName = context.get(DTOConstant.PAGE_QUERY_DTO_NAME);
-        return destPath + StrUtil.SLASH + pageQueryDtoName + StrUtil.DOT + CommonConstant.JAVA;
+        String pageQueryDtoName = context.get(Constant.DTO.PAGE_QUERY_DTO_NAME);
+        return destPath + StrUtil.SLASH + pageQueryDtoName + StrUtil.DOT + Constant.JAVA;
     }
 
     @Override
     protected Map<String, Object> buildBindingMap(Table table, Setting context) {
         Map<String, Object> retMap = new HashMap<>();
 
-        retMap.put(CommonConstant.PACKAGE_NAME, context.get(DTOConstant.PACKAGE_NAME_KEY));
-        String pageQuery = context.get("PageQuery");
+        retMap.put(Constant.PACKAGE_NAME, context.get(Constant.DTO.PACKAGE_NAME_KEY));
+        String pageQuery = context.get(DTO.PAGE_QUERY_CLASS_KEY);
         String pageQueryClass = CollUtil.getLast(StrUtil.splitTrim(pageQuery, StrUtil.DOT));
-        retMap.put("PageQueryClass", pageQueryClass);
+        retMap.put(DTO.PAGE_QUERY_CLASS_KEY, pageQueryClass);
         buildImportTypes(importList(context), retMap);
 
-        retMap.put(DTOConstant.PAGE_QUERY_DTO_NAME, context.get(DTOConstant.PAGE_QUERY_DTO_NAME));
-        retMap.put("pageQueryDTODesc", table.getComment() + " 分页参数");
+        retMap.put(Constant.DTO.PAGE_QUERY_DTO_NAME, context.get(Constant.DTO.PAGE_QUERY_DTO_NAME));
+        retMap.put(Constant.DTO.PAGE_QUERY_DTO_DESC, table.getComment() + " 分页参数");
         return retMap;
     }
 

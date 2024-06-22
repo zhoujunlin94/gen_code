@@ -2,7 +2,7 @@
 table = test_table
 
 # Java代码存放目录
-srcPath = D:\github\gen_code\src\main\java
+SrcPath = D:\github\gen_code\src\main\java
 
 # 数据库实体类包名
 entityPackageName = io.github.zhoujunlin94.code.gen.example.entity
@@ -10,29 +10,38 @@ entityPackageName = io.github.zhoujunlin94.code.gen.example.entity
 entityRemovePrefix = test
 
 # mapper接口包名
-mapperPackageName = io.github.zhoujunlin94.code.gen.example.mapper
-# TKMapper类名
-tkMapper = io.github.zhoujunlin94.meet.tk_mybatis.mapper.TKMapper
-
-# Mapper.xml路径
-mapperXmlDestPath = D:\github\gen_code\src\main\resources\mybatis
+MapperPackageName = io.github.zhoujunlin94.code.gen.example.mapper
 
 # handler包名
-handlerPackageName = io.github.zhoujunlin94.code.gen.example.handler
-tkHandler = io.github.zhoujunlin94.meet.tk_mybatis.handler.TKHandler
+HandlerPackageName = io.github.zhoujunlin94.code.gen.example.handler
 
 # DTO包名
-dtoPackageName = io.github.zhoujunlin94.code.gen.example.dto
-
-PageQuery = io.github.zhoujunlin94.meet.common.pojo.PageParam
+DTOPackageName = io.github.zhoujunlin94.code.gen.example.dto
 
 # VO包名
-voPackageName = io.github.zhoujunlin94.code.gen.example.vo
+VOPackageName = io.github.zhoujunlin94.code.gen.example.vo
 
 # Service包名
-servicePackageName = io.github.zhoujunlin94.code.gen.example.service
+ServicePackageName = io.github.zhoujunlin94.code.gen.example.service
 
-PageUtil = io.github.zhoujunlin94.meet.tk_mybatis.util.PageUtil
+# Endpoint包名
+EndPointPackageName = io.github.zhoujunlin94.code.gen.example.endpoint
 
-# Endpoint报名
-endPointPackageName = io.github.zhoujunlin94.code.gen.example.endpoint
+# Mapper.xml路径
+MapperXmlDestPath = D:\github\gen_code\src\main\resources\mybatis
+
+
+# TKMapper类名
+TKMapperClass = io.github.zhoujunlin94.meet.tk_mybatis.mapper.TKMapper
+
+# TKHandler类名
+TKHandlerClass = io.github.zhoujunlin94.meet.tk_mybatis.handler.TKHandler
+
+# PageQuery类名
+PageQueryClass = io.github.zhoujunlin94.meet.common.pojo.PageParam
+
+# PageUtil类名
+PageUtilClass = io.github.zhoujunlin94.meet.tk_mybatis.util.PageUtil
+
+# 作者
+Author = zhoujunlin

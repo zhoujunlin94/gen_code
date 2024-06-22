@@ -1,11 +1,13 @@
 package io.github.zhoujunlin94.code.gen;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.DbUtil;
 import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.component.*;
+import io.github.zhoujunlin94.code.gen.constant.Constant;
 
 import java.util.List;
 
@@ -22,17 +24,17 @@ public class GenCodeApp {
     );
 
     public static void run() {
-        Setting context = new Setting("genCode.setting");
-        String tableName = context.get("table");
-        Table table = MetaUtil.getTableMeta(DbUtil.getDs(), tableName);
-        AbstractGenCodeComponent.initContext(table, context);
-        GEN_CODE_COMPONENTS.forEach(component -> component.genCode(table, context));
+        Setting context = new Setting(Constant.GEN_CODE_SETTING);
+        String tableNames = context.get(Constant.TABLES_KEY);
+        for (String tableName : StrUtil.splitTrim(tableNames, StrUtil.COMMA)) {
+            Table table = MetaUtil.getTableMeta(DbUtil.getDs(), tableName);
+            AbstractGenCodeComponent.initContext(table, context);
+            GEN_CODE_COMPONENTS.forEach(component -> component.genCode(table, context));
+        }
     }
-
 
     public static void main(String[] args) {
         run();
     }
-
 
 }

@@ -5,8 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
-import io.github.zhoujunlin94.code.gen.constant.CommonConstant;
-import io.github.zhoujunlin94.code.gen.constant.EntityConstant;
+import io.github.zhoujunlin94.code.gen.constant.Constant;
 import io.github.zhoujunlin94.code.gen.dto.Field;
 
 import java.util.*;
@@ -20,31 +19,31 @@ public class GenEntityCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getTemplateName() {
-        return "Entity.ftl";
+        return Constant.FTL.ENTITY;
     }
 
     @Override
     protected String getDestFileName(Setting context) {
-        String destPath = buildDestPath(context, context.get(EntityConstant.PACKAGE_NAME_KEY));
+        String destPath = buildDestPath(context, context.get(Constant.Entity.PACKAGE_NAME_KEY));
         FileUtil.mkdir(destPath);
-        String entityName = context.get(EntityConstant.ENTITY_NAME);
-        return destPath + StrUtil.SLASH + entityName + StrUtil.DOT + CommonConstant.JAVA;
+        String entityName = context.get(Constant.Entity.ENTITY_NAME);
+        return destPath + StrUtil.SLASH + entityName + StrUtil.DOT + Constant.JAVA;
     }
 
     @Override
     protected Map<String, Object> buildBindingMap(Table table, Setting context) {
         Map<String, Object> retMap = new HashMap<>();
 
-        retMap.put(CommonConstant.PACKAGE_NAME, context.get(EntityConstant.PACKAGE_NAME_KEY));
+        retMap.put(Constant.PACKAGE_NAME, context.get(Constant.Entity.PACKAGE_NAME_KEY));
 
         Collection<Column> columns = table.getColumns();
         buildImportTypes(importList(columns), retMap);
 
-        retMap.put("tableName", table.getTableName());
+        retMap.put(Constant.TABLE_NAME, table.getTableName());
 
-        retMap.put(EntityConstant.ENTITY_NAME, context.get(EntityConstant.ENTITY_NAME));
+        retMap.put(Constant.Entity.ENTITY_NAME, context.get(Constant.Entity.ENTITY_NAME));
 
-        retMap.put(EntityConstant.FIELD_LIST, fieldList(columns));
+        retMap.put(Constant.FIELD_LIST, fieldList(columns));
         return retMap;
     }
 
@@ -53,7 +52,7 @@ public class GenEntityCodeComponent extends AbstractGenCodeComponent {
             Field field = new Field();
             field.setPk(column.isPk());
             field.setColumnName(column.getName());
-            field.setFieldType(EntityConstant.FIELD_TYPE_MAP.get(column.getTypeName()));
+            field.setFieldType(Constant.Entity.FIELD_TYPE_MAP.get(column.getTypeName()));
             field.setFieldName(StrUtil.toCamelCase(column.getName()));
             field.setComment(column.getComment());
             return field;
@@ -73,7 +72,7 @@ public class GenEntityCodeComponent extends AbstractGenCodeComponent {
         importList.add("javax.persistence.Table");
 
         columns.forEach(column -> {
-            String columnType = EntityConstant.IMPORT_TYPE_MAP.get(column.getTypeName());
+            String columnType = Constant.Entity.IMPORT_TYPE_MAP.get(column.getTypeName());
             if (StrUtil.isNotBlank(columnType) && !importList.contains(columnType)) {
                 importList.add(columnType);
             }

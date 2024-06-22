@@ -1,21 +1,24 @@
-package ${packageName};
+package ${PackageName};
 
-<#list externalTypes as importType>
+<#list ExternalTypes as importType>
 import ${importType};
 </#list>
 
-<#list internalTypes as importType>
+<#list InternalTypes as importType>
 import ${importType};
 </#list>
 
+/**
+* @author ${Author}
+*/
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "${tableName}")
-public class ${entityName} {
+@Table(name = "${TableName}")
+public class ${EntityName} {
 
-<#list fieldList as field>
+<#list FieldList as field>
     /**
      * ${field.comment}
      */
