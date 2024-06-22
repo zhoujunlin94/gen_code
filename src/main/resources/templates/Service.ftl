@@ -1,21 +1,24 @@
-package ${packageName};
+package ${PackageName};
 
-<#list externalTypes as importType>
+<#list ExternalTypes as importType>
 import ${importType};
 </#list>
 
-<#list internalTypes as importType>
+<#list InternalTypes as importType>
 import ${importType};
 </#list>
 
-public interface ${serviceName} {
+/**
+* @author ${Author}
+*/
+public interface ${ServiceName} {
 
-    void add(${dtoName} paramDTO, Integer loginUserId);
+    void add(${DTOName} paramDTO, Integer loginUserId);
 
-    void update(${dtoName} paramDTO, Integer loginUserId);
+    void update(${DTOName} paramDTO, Integer loginUserId);
 
-    ${dtoName} detail(Integer id);
+    ${DTOName} detail(Integer id);
 
-    PageInfo<${voName}> page(${pageQueryDTOName} pageQueryDTO);
+    PageInfo<${VOName}> page(${PageQueryDTOName} pageQueryDTO);
 
 }

@@ -21,14 +21,14 @@ public class GenPageQueryDTOCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getTemplateName() {
-        return Constant.FTL.PAGE_QUERY_DTO;
+        return "PageQueryDTO.ftl";
     }
 
     @Override
     protected String getDestFileName(Setting context) {
-        String destPath = buildDestPath(context, context.get(Constant.DTO.PACKAGE_NAME_KEY));
+        String destPath = buildDestPath(context, context.get(DTO.DTO_PACKAGE));
         FileUtil.mkdir(destPath);
-        String pageQueryDtoName = context.get(Constant.DTO.PAGE_QUERY_DTO_NAME);
+        String pageQueryDtoName = context.get(DTO.PAGE_QUERY_DTO_NAME);
         return destPath + StrUtil.SLASH + pageQueryDtoName + StrUtil.DOT + Constant.JAVA;
     }
 
@@ -36,14 +36,14 @@ public class GenPageQueryDTOCodeComponent extends AbstractGenCodeComponent {
     protected Map<String, Object> buildBindingMap(Table table, Setting context) {
         Map<String, Object> retMap = new HashMap<>();
 
-        retMap.put(Constant.PACKAGE_NAME, context.get(Constant.DTO.PACKAGE_NAME_KEY));
-        String pageQuery = context.get(DTO.PAGE_QUERY_CLASS_KEY);
+        retMap.put(Constant.PACKAGE_NAME, context.get(DTO.DTO_PACKAGE));
+        String pageQuery = context.get(DTO.KEY_PAGE_QUERY_CLASS);
         String pageQueryClass = CollUtil.getLast(StrUtil.splitTrim(pageQuery, StrUtil.DOT));
-        retMap.put(DTO.PAGE_QUERY_CLASS_KEY, pageQueryClass);
+        retMap.put(DTO.KEY_PAGE_QUERY_CLASS, pageQueryClass);
         buildImportTypes(importList(context), retMap);
 
-        retMap.put(Constant.DTO.PAGE_QUERY_DTO_NAME, context.get(Constant.DTO.PAGE_QUERY_DTO_NAME));
-        retMap.put(Constant.DTO.PAGE_QUERY_DTO_DESC, table.getComment() + " 分页参数");
+        retMap.put(DTO.PAGE_QUERY_DTO_NAME, context.get(DTO.PAGE_QUERY_DTO_NAME));
+        retMap.put("PageQueryDTODesc", context.get(DTO.PAGE_QUERY_DTO_NAME) + " 分页参数");
         return retMap;
     }
 

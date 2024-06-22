@@ -5,6 +5,9 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.Constant;
+import io.github.zhoujunlin94.code.gen.constant.Constant.Service;
+import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
+import io.github.zhoujunlin94.code.gen.constant.Constant.VO;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -23,33 +26,35 @@ public class GenServiceCodeComponent extends AbstractGenCodeComponent {
     }
 
     @Override
-    protected Map<String, Object> buildBindingMap(Table table, Setting context) {
-        Map<String, Object> retMap = new HashMap<>();
-
-        retMap.put(Constant.PACKAGE_NAME, context.get(Constant.Service.PACKAGE_NAME_KEY));
-
-        buildImportTypes(importList(context), retMap);
-
-        retMap.put(Constant.Service.SERVICE_NAME, context.get(Constant.Service.SERVICE_NAME));
-        retMap.put(Constant.DTO.DTO_NAME, context.get(Constant.DTO.DTO_NAME));
-        retMap.put(Constant.DTO.PAGE_QUERY_DTO_NAME, context.get(Constant.DTO.PAGE_QUERY_DTO_NAME));
-        retMap.put(Constant.VO.VO_NAME, context.get(Constant.VO.VO_NAME));
-        return retMap;
-    }
-
-    @Override
     protected String getDestFileName(Setting context) {
-        String destPath = buildDestPath(context, context.get(Constant.Service.PACKAGE_NAME_KEY));
+        String destPath = buildDestPath(context, context.get(Service.SERVICE_PACKAGE));
         FileUtil.mkdir(destPath);
-        String serviceName = context.get(Constant.Service.SERVICE_NAME);
+        String serviceName = context.get(Service.SERVICE_NAME);
         return destPath + StrUtil.SLASH + serviceName + StrUtil.DOT + Constant.JAVA;
     }
 
+    @Override
+    protected Map<String, Object> buildBindingMap(Table table, Setting context) {
+        Map<String, Object> retMap = new HashMap<>();
+
+        retMap.put(Constant.PACKAGE_NAME, context.get(Service.SERVICE_PACKAGE));
+
+        buildImportTypes(importList(context), retMap);
+
+        retMap.put(Service.SERVICE_NAME, context.get(Service.SERVICE_NAME));
+        retMap.put(DTO.DTO_NAME, context.get(DTO.DTO_NAME));
+        retMap.put(DTO.PAGE_QUERY_DTO_NAME, context.get(DTO.PAGE_QUERY_DTO_NAME));
+        retMap.put(VO.VO_NAME, context.get(VO.VO_NAME));
+        return retMap;
+    }
+
+
+
     private List<String> importList(Setting context) {
         List<String> importList = new LinkedList<>();
-        importList.add(context.get(Constant.DTO.DTO_CLASS));
-        importList.add(context.get(Constant.DTO.PAGE_QUERY_DTO_CLASS));
-        importList.add(context.get(Constant.VO.VO_CLASS));
+        importList.add(context.get(DTO.DTO_CLASS));
+        importList.add(context.get(DTO.PAGE_QUERY_DTO_CLASS));
+        importList.add(context.get(VO.VO_CLASS));
         importList.add("com.github.pagehelper.PageInfo");
         return importList;
     }

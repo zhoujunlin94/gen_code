@@ -6,6 +6,9 @@ import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.Constant;
+import io.github.zhoujunlin94.code.gen.constant.Constant.Entity;
+import io.github.zhoujunlin94.code.gen.constant.Constant.Mapper;
+import io.github.zhoujunlin94.code.gen.constant.Constant.MapperXml;
 import io.github.zhoujunlin94.code.gen.dto.Field;
 
 import java.util.Collection;
@@ -26,20 +29,20 @@ public class GenMapperXmlCodeComponent extends AbstractGenCodeComponent {
     }
 
     @Override
-    protected Map<String, Object> buildBindingMap(Table table, Setting context) {
-        Map<String, Object> retMap = new HashMap<>();
-        retMap.put(Constant.Mapper.MAPPER_CLASS, context.get(Constant.Mapper.MAPPER_CLASS));
-        retMap.put(Constant.Entity.ENTITY_CLASS, context.get(Constant.Entity.ENTITY_CLASS));
-        retMap.put(Constant.FIELD_LIST, fieldList(table.getColumns()));
-        return retMap;
+    protected String getDestFileName(Setting context) {
+        String mapperXmlDestPath = context.get("MapperXmlDestPath");
+        FileUtil.mkdir(mapperXmlDestPath);
+        String mapperName = context.get(Mapper.MAPPER_NAME);
+        return mapperXmlDestPath + StrUtil.SLASH + mapperName + StrUtil.DOT + "xml";
     }
 
     @Override
-    protected String getDestFileName(Setting context) {
-        String mapperXmlDestPath = context.get("mapperXmlDestPath");
-        FileUtil.mkdir(mapperXmlDestPath);
-        String mapperName = context.get(Constant.Mapper.MAPPER_NAME);
-        return mapperXmlDestPath + StrUtil.SLASH + mapperName + StrUtil.DOT + Constant.MapperXml.XML;
+    protected Map<String, Object> buildBindingMap(Table table, Setting context) {
+        Map<String, Object> retMap = new HashMap<>();
+        retMap.put(Mapper.MAPPER_CLASS, context.get(Mapper.MAPPER_CLASS));
+        retMap.put(Entity.ENTITY_CLASS, context.get(Entity.ENTITY_CLASS));
+        retMap.put(Constant.FIELD_LIST, fieldList(table.getColumns()));
+        return retMap;
     }
 
     private List<Field> fieldList(Collection<Column> columns) {
@@ -48,7 +51,7 @@ public class GenMapperXmlCodeComponent extends AbstractGenCodeComponent {
             field.setPk(column.isPk());
             field.setColumnName(column.getName());
             String typeName = column.getTypeName();
-            field.setTypeName(Constant.MapperXml.TYPE_NAME_MAP.getOrDefault(typeName, typeName));
+            field.setTypeName(MapperXml.TYPE_NAME_MAP.getOrDefault(typeName, typeName));
             field.setFieldName(StrUtil.toCamelCase(column.getName()));
             return field;
         }).collect(Collectors.toList());

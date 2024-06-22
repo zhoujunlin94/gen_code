@@ -6,6 +6,8 @@ import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.Constant;
+import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
+import io.github.zhoujunlin94.code.gen.constant.Constant.Entity;
 import io.github.zhoujunlin94.code.gen.dto.Field;
 
 import java.util.*;
@@ -19,14 +21,14 @@ public class GenDTOCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getTemplateName() {
-        return Constant.FTL.DTO;
+        return "DTO.ftl";
     }
 
     @Override
     protected String getDestFileName(Setting context) {
-        String destPath = buildDestPath(context, context.get(Constant.DTO.PACKAGE_NAME_KEY));
+        String destPath = buildDestPath(context, context.get(DTO.DTO_PACKAGE));
         FileUtil.mkdir(destPath);
-        String dtoName = context.get(Constant.DTO.DTO_NAME);
+        String dtoName = context.get(DTO.DTO_NAME);
         return destPath + StrUtil.SLASH + dtoName + StrUtil.DOT + Constant.JAVA;
     }
 
@@ -34,13 +36,13 @@ public class GenDTOCodeComponent extends AbstractGenCodeComponent {
     protected Map<String, Object> buildBindingMap(Table table, Setting context) {
         Map<String, Object> retMap = new HashMap<>();
 
-        retMap.put(Constant.PACKAGE_NAME, context.get(Constant.DTO.PACKAGE_NAME_KEY));
+        retMap.put(Constant.PACKAGE_NAME, context.get(DTO.DTO_PACKAGE));
 
         Collection<Column> columns = table.getColumns();
         buildImportTypes(importList(columns), retMap);
 
-        retMap.put(Constant.DTO.DTO_NAME, context.get(Constant.DTO.DTO_NAME));
-        retMap.put(Constant.DTO.DTO_DESC, table.getComment() + " DTO");
+        retMap.put(DTO.DTO_NAME, context.get(DTO.DTO_NAME));
+        retMap.put("DTODesc", context.get(DTO.DTO_NAME));
 
         retMap.put(Constant.FIELD_LIST, fieldList(columns));
         return retMap;
@@ -48,11 +50,11 @@ public class GenDTOCodeComponent extends AbstractGenCodeComponent {
 
     private List<Field> fieldList(Collection<Column> columns) {
         return columns.stream()
-                .filter(column -> !Constant.Entity.EXCLUDE_COLUMNS.contains(column.getName()))
+                .filter(column -> !Entity.EXCLUDE_COLUMNS.contains(column.getName()))
                 .map(column -> {
                     Field field = new Field();
                     field.setComment(column.getComment());
-                    field.setFieldType(Constant.Entity.FIELD_TYPE_MAP.get(column.getTypeName()));
+                    field.setFieldType(Entity.FIELD_TYPE_MAP.get(column.getTypeName()));
                     String columnName = column.getName();
                     field.setFieldName(StrUtil.toCamelCase(columnName));
                     return field;
@@ -68,10 +70,10 @@ public class GenDTOCodeComponent extends AbstractGenCodeComponent {
         importList.add("java.io.Serializable");
 
         columns.forEach(column -> {
-            if (Constant.Entity.EXCLUDE_COLUMNS.contains(column.getName())) {
+            if (Entity.EXCLUDE_COLUMNS.contains(column.getName())) {
                 return;
             }
-            String columnType = Constant.Entity.IMPORT_TYPE_MAP.get(column.getTypeName());
+            String columnType = Entity.IMPORT_TYPE_MAP.get(column.getTypeName());
             if (StrUtil.isNotBlank(columnType) && !importList.contains(columnType)) {
                 importList.add(columnType);
             }

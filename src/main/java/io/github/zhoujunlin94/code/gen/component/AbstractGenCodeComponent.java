@@ -5,6 +5,7 @@ import cn.hutool.db.meta.Table;
 import cn.hutool.extra.template.Template;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.Constant;
+import io.github.zhoujunlin94.code.gen.constant.Constant.*;
 import lombok.SneakyThrows;
 
 import java.io.FileWriter;
@@ -19,49 +20,56 @@ import java.util.Map;
 public abstract class AbstractGenCodeComponent {
 
     public static void initContext(Table table, Setting context) {
+        // ===== Entity =====
         String tableName = table.getTableName();
         String entityName = StrUtil.toCamelCase(tableName);
-        entityName = StrUtil.removePrefix(entityName, context.get(Constant.Entity.ENTITY_REMOVE_PREFIX_KEY));
-        context.put(Constant.Entity.ENTITY_NAME, entityName);
-        context.put(Constant.Entity.CAMEL_CASE_ENTITY_NAME, StrUtil.toCamelCase(entityName, '-'));
-        String entityClass = context.get(Constant.Entity.PACKAGE_NAME_KEY) + StrUtil.DOT + entityName;
-        context.put(Constant.Entity.ENTITY_CLASS, entityClass);
+        entityName = StrUtil.removePrefix(entityName, context.get("EntityRemovePrefix"));
+        context.put(Entity.ENTITY_NAME, entityName);
+        context.put(Entity.CAMEL_CASE_ENTITY_NAME, StrUtil.toCamelCase(entityName, '-'));
+        String entityClass = context.get(Entity.KEY_PACKAGE_NAME) + StrUtil.DOT + entityName;
+        context.put(Entity.ENTITY_CLASS, entityClass);
 
-        String mapperName = entityName + Constant.Mapper.MAPPER;
-        context.put(Constant.Mapper.MAPPER_NAME, mapperName);
-        String mapperClass = context.get(Constant.Mapper.PACKAGE_NAME_KEY) + StrUtil.DOT + mapperName;
-        context.put(Constant.Mapper.MAPPER_CLASS, mapperClass);
+        String mapperName = entityName + "Mapper";
+        context.put(Mapper.MAPPER_NAME, mapperName);
+        String mapperClass = context.get(Mapper.KEY_PACKAGE_NAME) + StrUtil.DOT + mapperName;
+        context.put(Mapper.MAPPER_CLASS, mapperClass);
 
-        String handlerName = entityName + Constant.Handler.HANDLER;
-        context.put(Constant.Handler.HANDLER_NAME, handlerName);
-        String handlerClass = context.get(Constant.Handler.PACKAGE_NAME_KEY) + StrUtil.DOT + handlerName;
-        context.put(Constant.Handler.HANDLER_CLASS, handlerClass);
+        String handlerName = entityName + "Handler";
+        context.put(Handler.HANDLER_NAME, handlerName);
+        String handlerClass = context.get(Handler.KEY_PACKAGE_NAME) + StrUtil.DOT + handlerName;
+        context.put(Handler.HANDLER_CLASS, handlerClass);
 
-        String dtoName = entityName + Constant.DTO.DTO;
-        context.put(Constant.DTO.DTO_NAME, dtoName);
-        String dtoClass = context.get(Constant.DTO.PACKAGE_NAME_KEY) + StrUtil.DOT + entityName.toLowerCase() + StrUtil.DOT + dtoName;
-        context.put(Constant.DTO.DTO_CLASS, dtoClass);
+        String dtoName = entityName + "DTO";
+        context.put(DTO.DTO_NAME, dtoName);
+        String dtoPackageName = context.get(DTO.KEY_PACKAGE_NAME) + StrUtil.DOT + entityName.toLowerCase();
+        context.put(DTO.DTO_PACKAGE, dtoPackageName);
+        String dtoClass = dtoPackageName + StrUtil.DOT + dtoName;
+        context.put(DTO.DTO_CLASS, dtoClass);
 
-        String pageQueryDtoName = entityName + Constant.DTO.PAGE_QUERY;
-        context.put(Constant.DTO.PAGE_QUERY_DTO_NAME, pageQueryDtoName);
-        String pageQueryDtoClass = context.get(Constant.DTO.PACKAGE_NAME_KEY) + StrUtil.DOT + entityName.toLowerCase() + StrUtil.DOT + pageQueryDtoName;
-        context.put(Constant.DTO.PAGE_QUERY_DTO_CLASS, pageQueryDtoClass);
+        String pageQueryDtoName = entityName + "PageQueryDTO";
+        context.put(DTO.PAGE_QUERY_DTO_NAME, pageQueryDtoName);
+        String pageQueryDtoClass = dtoPackageName + StrUtil.DOT + pageQueryDtoName;
+        context.put(DTO.PAGE_QUERY_DTO_CLASS, pageQueryDtoClass);
 
-        String voName = entityName + Constant.VO.VO;
-        context.put(Constant.VO.VO_NAME, voName);
-        String voClass = context.get(Constant.VO.PACKAGE_NAME_KEY) + StrUtil.DOT + entityName.toLowerCase() + StrUtil.DOT + voName;
-        context.put(Constant.VO.VO_CLASS, voClass);
+        String voName = entityName + "VO";
+        context.put(VO.VO_NAME, voName);
+        String voPackageName = context.get(VO.KEY_PACKAGE_NAME) + StrUtil.DOT + entityName.toLowerCase();
+        context.put(VO.VO_PACKAGE, voPackageName);
+        String voClass = voPackageName + StrUtil.DOT + voName;
+        context.put(VO.VO_CLASS, voClass);
 
-        String serviceName = entityName + Constant.Service.SERVICE;
-        context.put(Constant.Service.SERVICE_NAME, serviceName);
-        String serviceClass = context.get(Constant.Service.PACKAGE_NAME_KEY) + StrUtil.DOT + entityName.toLowerCase() + StrUtil.DOT + serviceName;
-        context.put(Constant.Service.SERVICE_CLASS, serviceClass);
+        String serviceName = entityName + "Service";
+        context.put(Service.SERVICE_NAME, serviceName);
+        String servicePackageName = context.get(Service.KEY_PACKAGE_NAME) + StrUtil.DOT + entityName.toLowerCase();
+        context.put(Service.SERVICE_PACKAGE, servicePackageName);
+        String serviceClass = servicePackageName + StrUtil.DOT + serviceName;
+        context.put(Service.SERVICE_CLASS, serviceClass);
 
-        String serviceImplName = entityName + Constant.Service.SERVICE_IMPL;
-        context.put(Constant.Service.SERVICE_IMPL_NAME, serviceImplName);
+        String serviceImplName = entityName + "ServiceImpl";
+        context.put(Service.SERVICE_IMPL_NAME, serviceImplName);
 
-        String endpointName = entityName + Constant.Endpoint.ENDPOINT;
-        context.put(Constant.Endpoint.ENDPOINT_NAME, endpointName);
+        String endpointName = entityName + "Endpoint";
+        context.put(Endpoint.ENDPOINT_NAME, endpointName);
     }
 
     protected Template getTemplate() {
@@ -78,7 +86,7 @@ public abstract class AbstractGenCodeComponent {
     public void genCode(Table table, Setting context) {
         Template template = getTemplate();
         Map<String, Object> bindingMap = buildBindingMap(table, context);
-        bindingMap.put(Constant.AUTHOR_KEY, context.get(Constant.AUTHOR_KEY));
+        bindingMap.put(Constant.KEY_AUTHOR, context.get(Constant.KEY_AUTHOR));
         String destFileName = getDestFileName(context);
         template.render(bindingMap, new FileWriter(destFileName));
     }
@@ -93,12 +101,12 @@ public abstract class AbstractGenCodeComponent {
                 externalTypes.add(importType);
             }
         });
-        bindingMap.put(Constant.EXTERNAL_TYPES, externalTypes);
-        bindingMap.put(Constant.INTERNAL_TYPES, internalTypes);
+        bindingMap.put("ExternalTypes", externalTypes);
+        bindingMap.put("InternalTypes", internalTypes);
     }
 
     protected String buildDestPath(Setting context, String packageName) {
-        return context.get(Constant.SRC_PATH_KEY) + StrUtil.SLASH +
+        return context.get("SrcPath") + StrUtil.SLASH +
                 StrUtil.replace(packageName, StrUtil.DOT, StrUtil.SLASH);
     }
 

@@ -1,48 +1,51 @@
-package ${packageName};
+package ${PackageName};
 
-<#list externalTypes as importType>
+<#list ExternalTypes as importType>
 import ${importType};
 </#list>
 
-<#list internalTypes as importType>
+<#list InternalTypes as importType>
 import ${importType};
 </#list>
 
+/**
+* @author ${Author}
+*/
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ${serviceImplName} implements ${serviceName} {
+public class ${ServiceImplName} implements ${ServiceName} {
 
-    private final ${handlerName} ${lowerHandlerName};
+    private final ${HandlerName} ${lowerFirstHandlerName};
 
     @Override
-    public void add(${dtoName} paramDTO, Integer loginUserId) {
-        ${entityName} entity = BeanUtil.toBean(paramDTO, ${entityName}.class);
+    public void add(${DTOName} paramDTO, Integer loginUserId) {
+        ${EntityName} entity = BeanUtil.toBean(paramDTO, ${EntityName}.class);
         entity.setCreatedBy(loginUserId);
         entity.setUpdatedBy(loginUserId);
-        ${lowerHandlerName}.insertSelective(entity);
+        ${lowerFirstHandlerName}.insertSelective(entity);
     }
 
     @Override
-    public void update(${dtoName} paramDTO, Integer loginUserId) {
-        ${entityName} entity = BeanUtil.toBean(paramDTO, ${entityName}.class);
+    public void update(${DTOName} paramDTO, Integer loginUserId) {
+        ${EntityName} entity = BeanUtil.toBean(paramDTO, ${EntityName}.class);
         entity.setUpdatedBy(loginUserId);
-        ${lowerHandlerName}.updateByPrimaryKeySelective(entity);
+        ${lowerFirstHandlerName}.updateByPrimaryKeySelective(entity);
     }
 
     @Override
-    public ${dtoName} detail(Integer id) {
-        ${entityName} entity = ${lowerHandlerName}.selectByPrimaryKey(id);
-        return BeanUtil.toBean(entity, ${dtoName}.class);
+    public ${DTOName} detail(Integer id) {
+        ${entityName} entity = ${lowerFirstHandlerName}.selectByPrimaryKey(id);
+        return BeanUtil.toBean(entity, ${DTOName}.class);
     }
 
     @Override
-    public PageInfo<${voName}> page(${pageQueryDTOName} pageQueryDTO) {
-        PageInfo<${voName}> entityPageInfo = PageHelper.startPage(pageQueryDTO.getPageNo(), pageQueryDTO.getPageSize())
-                .doSelectPageInfo(()-> ${lowerHandlerName}.page(pageQueryDTO));
+    public PageInfo<${VOName}> page(${PageQueryDTOName} pageQueryDTO) {
+        PageInfo<${VOName}> entityPageInfo = PageHelper.startPage(pageQueryDTO.getPageNo(), pageQueryDTO.getPageSize())
+                .doSelectPageInfo(()-> ${lowerFirstHandlerName}.page(pageQueryDTO));
 
-        List<${voName}> retList = entityPageInfo.getList().stream()
-                .map(entity -> BeanUtil.toBean(entity, ${voName}.class)).collect(Collectors.toList());
+        List<${VOName}> retList = entityPageInfo.getList().stream()
+                .map(entity -> BeanUtil.toBean(entity, ${VOName}.class)).collect(Collectors.toList());
 
         return PageUtil.copy(entityPageInfo, retList);
     }

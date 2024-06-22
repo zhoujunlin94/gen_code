@@ -1,16 +1,19 @@
-package ${packageName};
+package ${PackageName};
 
-<#list externalTypes as importType>
+<#list ExternalTypes as importType>
 import ${importType};
 </#list>
 
-<#list internalTypes as importType>
+<#list InternalTypes as importType>
 import ${importType};
 </#list>
 
+/**
+* @author ${Author}
+*/
 @Data
-@ApiModel(description = "${voDesc}")
-public class ${voName} extends ${dtoName} {
+@ApiModel(description = "${VODesc}")
+public class ${VOName} extends ${DTOName} {
 
     private static final long serialVersionUID = 7697167583320506967L;
 

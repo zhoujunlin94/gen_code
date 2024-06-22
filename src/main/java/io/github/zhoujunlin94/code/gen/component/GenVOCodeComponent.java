@@ -5,6 +5,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.Constant;
+import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
+import io.github.zhoujunlin94.code.gen.constant.Constant.VO;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -24,9 +26,9 @@ public class GenVOCodeComponent extends AbstractGenCodeComponent {
 
     @Override
     protected String getDestFileName(Setting context) {
-        String destPath = buildDestPath(context, context.get(Constant.VO.PACKAGE_NAME_KEY));
+        String destPath = buildDestPath(context, context.get(VO.VO_PACKAGE));
         FileUtil.mkdir(destPath);
-        String voName = context.get(Constant.VO.VO_NAME);
+        String voName = context.get(VO.VO_NAME);
         return destPath + StrUtil.SLASH + voName + StrUtil.DOT + Constant.JAVA;
     }
 
@@ -34,17 +36,17 @@ public class GenVOCodeComponent extends AbstractGenCodeComponent {
     protected Map<String, Object> buildBindingMap(Table table, Setting context) {
         Map<String, Object> retMap = new HashMap<>();
 
-        retMap.put(Constant.PACKAGE_NAME, context.get(Constant.VO.PACKAGE_NAME_KEY));
+        retMap.put(Constant.PACKAGE_NAME, context.get(VO.VO_PACKAGE));
         buildImportTypes(importList(context), retMap);
-        retMap.put(Constant.DTO.DTO_NAME, context.get(Constant.DTO.DTO_NAME));
-        retMap.put(Constant.VO.VO_NAME, context.get(Constant.VO.VO_NAME));
-        retMap.put("voDesc", table.getComment() + " VO");
+        retMap.put(DTO.DTO_NAME, context.get(DTO.DTO_NAME));
+        retMap.put(VO.VO_NAME, context.get(VO.VO_NAME));
+        retMap.put("VODesc", context.get(VO.VO_NAME));
         return retMap;
     }
 
     private List<String> importList(Setting context) {
         List<String> importList = new LinkedList<>();
-        importList.add(context.get(Constant.DTO.DTO_CLASS));
+        importList.add(context.get(DTO.DTO_CLASS));
         importList.add("io.swagger.annotations.ApiModel");
         importList.add("lombok.Data");
 

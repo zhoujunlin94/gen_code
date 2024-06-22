@@ -1,46 +1,49 @@
-package ${packageName};
+package ${PackageName};
 
-<#list externalTypes as importType>
+<#list ExternalTypes as importType>
 import ${importType};
 </#list>
 
-<#list internalTypes as importType>
+<#list InternalTypes as importType>
 import ${importType};
 </#list>
 
-@Api(tags = {"${endPointDesc}"})
+/**
+* @author ${Author}
+*/
+@Api(tags = {"${EndpointDesc}"})
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/${camelCaseEntityName}")
-public class ${endPointName} {
+@RequestMapping("/api/v1/${camel-case-entity-name}")
+public class ${EndPointName} {
 
-    private final ${serviceName} ${lowerServiceName};
+    private final ${ServiceName} ${lowerFirstServiceName};
 
     @PostMapping("add")
     @ApiOperation("新增")
-    public void add(@RequestBody @Valid ${dtoName} paramDTO) {
+    public void add(@RequestBody @Valid ${DTOName} paramDTO) {
         paramDTO.setId(null);
-        ${lowerServiceName}.add(paramDTO, null);
+        ${lowerFirstServiceName}.add(paramDTO, null);
     }
 
     @PostMapping("update")
     @ApiOperation("更新")
-    public void update(@RequestBody @Valid ${dtoName} paramDTO) {
+    public void update(@RequestBody @Valid ${DTOName} paramDTO) {
         Assert.notNull(paramDTO.getId(), "更新时主键不可为空");
-        ${lowerServiceName}.update(paramDTO, null);
+        ${lowerFirstServiceName}.update(paramDTO, null);
     }
 
     @GetMapping("detail")
     @ApiOperation("详情")
-    public ${dtoName} detail(@RequestParam @NotNull(message = "主键不可为空") Integer id) {
-        return ${lowerServiceName}.detail(id);
+    public ${DTOName} detail(@RequestParam @NotNull(message = "主键不可为空") Integer id) {
+        return ${lowerFirstServiceName}.detail(id);
     }
 
     @PostMapping("page")
     @ApiOperation("分页")
-    public PageInfo<${voName}> page(@RequestBody ${pageQueryDTOName} pageQueryDTO) {
-        return ${lowerServiceName}.page(pageQueryDTO);
+    public PageInfo<${VOName}> page(@RequestBody ${PageQueryDTOName} pageQueryDTO) {
+        return ${lowerFirstServiceName}.page(pageQueryDTO);
     }
 
 }

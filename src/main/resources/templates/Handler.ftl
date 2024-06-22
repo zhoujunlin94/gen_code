@@ -1,18 +1,21 @@
-package ${packageName};
+package ${PackageName};
 
-<#list externalTypes as importType>
+<#list ExternalTypes as importType>
     import ${importType};
 </#list>
 
-<#list internalTypes as importType>
+<#list InternalTypes as importType>
 import ${importType};
 </#list>
 
+/**
+* @author ${Author}
+*/
 @Repository
-public class ${handlerName} extends TKHandler<${mapperName}, ${entityName}> {
+public class ${HandlerName} extends TKHandler<${MapperName}, ${EntityName}> {
 
-    public List<${entityName}> page(${pageQueryDTOName} pageQuery){
-        Weekend<${entityName}> weekend = thisWeekend();
+    public List<${EntityName}> page(${PageQueryDTOName} pageQuery){
+        Weekend<${EntityName}> weekend = thisWeekend();
         return this.baseMapper.selectByExample(weekend);
     }
 

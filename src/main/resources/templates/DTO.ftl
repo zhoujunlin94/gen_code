@@ -1,20 +1,23 @@
-package ${packageName};
+package ${PackageName};
 
-<#list externalTypes as importType>
+<#list ExternalTypes as importType>
 import ${importType};
 </#list>
 
-<#list internalTypes as importType>
+<#list InternalTypes as importType>
 import ${importType};
 </#list>
 
+/**
+* @author ${Author}
+*/
 @Data
-@ApiModel(description = "${dtoDesc}")
-public class ${dtoName} implements Serializable {
+@ApiModel(description = "${DTODesc}")
+public class ${DTOName} implements Serializable {
 
     private static final long serialVersionUID = -5001610704205988933L;
 
-<#list fieldList as field>
+<#list FieldList as field>
     @ApiModelProperty(value = "${field.comment}")
     private ${field.fieldType} ${field.fieldName};
 
