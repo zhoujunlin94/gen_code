@@ -39,10 +39,10 @@ public class ${serviceImplName} implements ${serviceName} {
     @Override
     public PageInfo<${voName}> page(${pageQueryDTOName} pageQueryDTO) {
         PageInfo<${voName}> entityPageInfo = PageHelper.startPage(pageQueryDTO.getPageNo(), pageQueryDTO.getPageSize())
-                    .doSelectPageInfo(()-> ${lowerHandlerName}.page(pageQueryDTO));
+                .doSelectPageInfo(()-> ${lowerHandlerName}.page(pageQueryDTO));
 
         List<${voName}> retList = entityPageInfo.getList().stream()
-                    .map(entity -> BeanUtil.toBean(entity, ${voName}.class)).collect(Collectors.toList());
+                .map(entity -> BeanUtil.toBean(entity, ${voName}.class)).collect(Collectors.toList());
 
         return PageUtil.copy(entityPageInfo, retList);
     }

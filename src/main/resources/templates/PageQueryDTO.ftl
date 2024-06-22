@@ -10,7 +10,7 @@ import ${importType};
 
 @Data
 @ApiModel(description = "${pageQueryDTODesc}")
-public class ${pageQueryDTOName} extends ${PageQueryClass} implements Serializable {
+public class ${pageQueryDTOName} extends ${PageQueryClass} {
     private static final long serialVersionUID = -5001610704205988933L;
 
 }

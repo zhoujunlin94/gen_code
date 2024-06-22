@@ -5,7 +5,7 @@ package ${packageName};
 </#list>
 
 <#list internalTypes as importType>
-    import ${importType};
+import ${importType};
 </#list>
 
 @Repository

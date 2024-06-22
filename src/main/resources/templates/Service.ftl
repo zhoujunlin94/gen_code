@@ -1,11 +1,11 @@
 package ${packageName};
 
 <#list externalTypes as importType>
-    import ${importType};
+import ${importType};
 </#list>
 
 <#list internalTypes as importType>
-    import ${importType};
+import ${importType};
 </#list>
 
 public interface ${serviceName} {
