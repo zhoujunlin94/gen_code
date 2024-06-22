@@ -36,7 +36,7 @@ public abstract class AbstractGenCodeComponent {
         context.put(HandlerConstant.HANDLER_NAME, handlerName);
 
         String handlerClass = context.get(HandlerConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + handlerName;
-        context.put("handlerClass", handlerClass);
+        context.put(HandlerConstant.HANDLER_CLASS, handlerClass);
 
 
         String dtoName = entityName + "DTO";
@@ -57,6 +57,14 @@ public abstract class AbstractGenCodeComponent {
         String voClass = context.get(VOConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + voName;
         context.put(VOConstant.VO_CLASS, voClass);
 
+        String serviceName = entityName + "Service";
+        context.put(ServiceConstant.SERVICE_NAME, serviceName);
+
+        String serviceClass = context.get(ServiceConstant.PACKAGE_NAME_KEY) + StrUtil.DOT + serviceName;
+        context.put(ServiceConstant.SERVICE_CLASS, serviceClass);
+
+        String serviceImplName = entityName + "ServiceImpl";
+        context.put(ServiceConstant.SERVICE_IMPL_NAME, serviceImplName);
 
     }
 

@@ -16,9 +16,9 @@ import java.util.List;
 public class GenCodeApp {
 
     public static final List<AbstractGenCodeComponent> GEN_CODE_COMPONENTS = CollUtil.newArrayList(
-            new GenEntityCodeComponent(), new GenMapperCodeComponent(), new GenMapperXmlCodeComponent(),
-            new GenHandlerCodeComponent(), new GenDTOCodeComponent(), new GenVOCodeComponent(),
-            new GenPageQueryDTOCodeComponent()
+            new GenEntityCodeComponent(), new GenDTOCodeComponent(), new GenPageQueryDTOCodeComponent(), new GenVOCodeComponent(),
+            new GenMapperCodeComponent(), new GenMapperXmlCodeComponent(), new GenHandlerCodeComponent(),
+            new GenServiceCodeComponent(), new GenServiceImplCodeComponent()
     );
 
     public static void run() {

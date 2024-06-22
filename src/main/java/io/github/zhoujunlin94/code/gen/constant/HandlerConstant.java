@@ -10,4 +10,6 @@ public class HandlerConstant {
 
     public static final String HANDLER_NAME = "handlerName";
 
+    public static final String HANDLER_CLASS = "handlerClass";
+
 }

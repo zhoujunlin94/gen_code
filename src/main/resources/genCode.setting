@@ -29,3 +29,7 @@ PageQuery = io.github.zhoujunlin94.meet.common.pojo.PageParam
 # VO包名
 voPackageName = io.github.zhoujunlin94.code.gen.example.vo
 
+# Service包名
+servicePackageName = io.github.zhoujunlin94.code.gen.example.service
+
+PageUtil = io.github.zhoujunlin94.meet.tk_mybatis.util.PageUtil
