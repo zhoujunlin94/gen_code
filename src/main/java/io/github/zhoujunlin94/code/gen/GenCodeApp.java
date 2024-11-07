@@ -7,6 +7,8 @@ import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.component.*;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ import java.util.List;
  * @author zhoujunlin
  * @date 2024-05-09-16:43
  */
-public class GenCodeApp {
+public class GenCodeApp extends Application {
 
     public static final List<AbstractGenCodeComponent> GEN_CODE_COMPONENTS = CollUtil.newArrayList(
             new GenEntityCodeComponent(), new GenDTOCodeComponent(), new GenPageQueryDTOCodeComponent(), new GenVOCodeComponent(),
@@ -32,8 +34,13 @@ public class GenCodeApp {
         }
     }
 
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.show();
+    }
+
     public static void main(String[] args) {
-        run();
+        launch(args);
     }
 
 }
