@@ -2,6 +2,7 @@ package io.github.zhoujunlin94.code.gen;
 
 import cn.hutool.db.Db;
 import cn.hutool.db.DbUtil;
+import cn.hutool.db.Entity;
 import cn.hutool.db.ds.DSFactory;
 import io.github.zhoujunlin94.code.gen.common.SettingContext;
 import lombok.SneakyThrows;
@@ -39,6 +40,8 @@ public class H2Operate {
 
     @SneakyThrows
     private static void dml() {
+
+
 //        DB.insert(Entity.create("db_conf")
 //                .set("db_name", "test")
 //                .set("db_url", "jdbc:mysql://127.0.0.1:3306/test?useSSL=false&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&useUnicode=true&autoReconnect=true&failOverReadOnly=false&useAffectedRows=true")
@@ -51,7 +54,8 @@ public class H2Operate {
 
     @SneakyThrows
     private static void dql() {
-        System.out.println(DB.query("select * from db_conf where id = ? ", 1));
+        //System.out.println(DB.query("select * from db_conf where id = ? ", 1));
+        System.out.println(DB.page(Entity.create("db_conf"), 0, 10));
     }
 
 }
