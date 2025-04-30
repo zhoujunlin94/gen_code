@@ -9,6 +9,7 @@ import io.github.zhoujunlin94.code.gen.constant.Constant;
 import io.github.zhoujunlin94.code.gen.constant.Constant.Entity;
 import io.github.zhoujunlin94.code.gen.dto.Field;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,7 @@ public class GenEntityCodeComponent extends AbstractGenCodeComponent {
         String destPath = buildDestPath(context, context.get(Entity.KEY_PACKAGE_NAME));
         FileUtil.mkdir(destPath);
         String entityName = context.get(Entity.ENTITY_NAME);
-        return destPath + StrUtil.SLASH + entityName + StrUtil.DOT + Constant.JAVA;
+        return destPath + File.separator + entityName + StrUtil.DOT + Constant.JAVA;
     }
 
     @Override

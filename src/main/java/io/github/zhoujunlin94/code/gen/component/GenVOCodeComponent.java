@@ -8,6 +8,7 @@ import io.github.zhoujunlin94.code.gen.constant.Constant;
 import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
 import io.github.zhoujunlin94.code.gen.constant.Constant.VO;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class GenVOCodeComponent extends AbstractGenCodeComponent {
         String destPath = buildDestPath(context, context.get(VO.VO_PACKAGE));
         FileUtil.mkdir(destPath);
         String voName = context.get(VO.VO_NAME);
-        return destPath + StrUtil.SLASH + voName + StrUtil.DOT + Constant.JAVA;
+        return destPath + File.separator + voName + StrUtil.DOT + Constant.JAVA;
     }
 
     @Override

@@ -8,6 +8,7 @@ import io.github.zhoujunlin94.code.gen.constant.Constant;
 import io.github.zhoujunlin94.code.gen.constant.Constant.*;
 import lombok.SneakyThrows;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,8 +109,8 @@ public abstract class AbstractGenCodeComponent {
     }
 
     protected String buildDestPath(Setting context, String packageName) {
-        return context.get("SrcPath") + StrUtil.SLASH +
-                StrUtil.replace(packageName, StrUtil.DOT, StrUtil.SLASH);
+        return context.get("SrcPath") + File.separator +
+                StrUtil.replace(packageName, StrUtil.DOT, File.separator);
     }
 
 }

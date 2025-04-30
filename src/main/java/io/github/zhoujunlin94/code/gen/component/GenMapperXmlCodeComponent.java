@@ -11,6 +11,7 @@ import io.github.zhoujunlin94.code.gen.constant.Constant.Mapper;
 import io.github.zhoujunlin94.code.gen.constant.Constant.MapperXml;
 import io.github.zhoujunlin94.code.gen.dto.Field;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,7 @@ public class GenMapperXmlCodeComponent extends AbstractGenCodeComponent {
         String mapperXmlDestPath = context.get("MapperXmlDestPath");
         FileUtil.mkdir(mapperXmlDestPath);
         String mapperName = context.get(Mapper.MAPPER_NAME);
-        return mapperXmlDestPath + StrUtil.SLASH + mapperName + StrUtil.DOT + "xml";
+        return mapperXmlDestPath + File.separator + mapperName + StrUtil.DOT + "xml";
     }
 
     @Override

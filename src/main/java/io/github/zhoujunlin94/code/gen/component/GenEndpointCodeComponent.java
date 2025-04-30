@@ -5,12 +5,9 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.Constant;
-import io.github.zhoujunlin94.code.gen.constant.Constant.Endpoint;
-import io.github.zhoujunlin94.code.gen.constant.Constant.Entity;
-import io.github.zhoujunlin94.code.gen.constant.Constant.Service;
-import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
-import io.github.zhoujunlin94.code.gen.constant.Constant.VO;
+import io.github.zhoujunlin94.code.gen.constant.Constant.*;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +29,7 @@ public class GenEndpointCodeComponent extends AbstractGenCodeComponent {
         String destPath = buildDestPath(context, context.get(Endpoint.ENDPOINT_PACKAGE));
         FileUtil.mkdir(destPath);
         String endpointName = context.get(Endpoint.ENDPOINT_NAME);
-        return destPath + StrUtil.SLASH + endpointName + StrUtil.DOT + Constant.JAVA;
+        return destPath + File.separator + endpointName + StrUtil.DOT + Constant.JAVA;
     }
 
     @Override
@@ -54,7 +51,6 @@ public class GenEndpointCodeComponent extends AbstractGenCodeComponent {
 
         return retMap;
     }
-
 
 
     private List<String> importList(Setting context) {

@@ -9,6 +9,7 @@ import io.github.zhoujunlin94.code.gen.constant.Constant.Service;
 import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
 import io.github.zhoujunlin94.code.gen.constant.Constant.VO;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class GenServiceCodeComponent extends AbstractGenCodeComponent {
         String destPath = buildDestPath(context, context.get(Service.SERVICE_PACKAGE));
         FileUtil.mkdir(destPath);
         String serviceName = context.get(Service.SERVICE_NAME);
-        return destPath + StrUtil.SLASH + serviceName + StrUtil.DOT + Constant.JAVA;
+        return destPath + File.separator + serviceName + StrUtil.DOT + Constant.JAVA;
     }
 
     @Override

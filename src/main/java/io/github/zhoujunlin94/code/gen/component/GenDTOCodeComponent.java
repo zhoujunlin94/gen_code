@@ -10,6 +10,7 @@ import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
 import io.github.zhoujunlin94.code.gen.constant.Constant.Entity;
 import io.github.zhoujunlin94.code.gen.dto.Field;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class GenDTOCodeComponent extends AbstractGenCodeComponent {
         String destPath = buildDestPath(context, context.get(DTO.DTO_PACKAGE));
         FileUtil.mkdir(destPath);
         String dtoName = context.get(DTO.DTO_NAME);
-        return destPath + StrUtil.SLASH + dtoName + StrUtil.DOT + Constant.JAVA;
+        return destPath + File.separator + dtoName + StrUtil.DOT + Constant.JAVA;
     }
 
     @Override

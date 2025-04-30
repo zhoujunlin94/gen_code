@@ -11,6 +11,7 @@ import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
 import io.github.zhoujunlin94.code.gen.constant.Constant.Entity;
 import io.github.zhoujunlin94.code.gen.constant.Constant.VO;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class GenServiceImplCodeComponent extends AbstractGenCodeComponent {
         String destPath = buildDestPath(context, context.get(Service.SERVICE_PACKAGE) + ".impl");
         FileUtil.mkdir(destPath);
         String serviceImplName = context.get(Service.SERVICE_IMPL_NAME);
-        return destPath + StrUtil.SLASH + serviceImplName + StrUtil.DOT + Constant.JAVA;
+        return destPath + File.separator + serviceImplName + StrUtil.DOT + Constant.JAVA;
     }
 
     @Override

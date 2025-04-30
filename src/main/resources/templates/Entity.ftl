@@ -10,7 +10,7 @@ import ${importType};
 
 /**
  * @author ${Author}
-*/
+ */
 @Data
 @Accessors(chain = true)
 @Table(name = "${TableName}")

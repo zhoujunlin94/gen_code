@@ -2,13 +2,14 @@ package io.github.zhoujunlin94.code.gen;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.db.DbUtil;
+import cn.hutool.db.ds.DSFactory;
 import cn.hutool.db.meta.MetaUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.common.SettingContext;
 import io.github.zhoujunlin94.code.gen.component.*;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,11 +29,13 @@ public class GenCodeApp {
     }
 
     public static void run() {
+        DataSource dataSource = DSFactory.create(SettingContext.getSetting("db.setting")).getDataSource();
         Setting context = SettingContext.getSetting("genCode.setting");
         String tableNames = context.get("tables");
         List<String> modes = StrUtil.splitTrim(context.get("mode"), StrUtil.COMMA);
+
         for (String tableName : StrUtil.splitTrim(tableNames, StrUtil.COMMA)) {
-            Table table = MetaUtil.getTableMeta(DbUtil.getDs(), tableName);
+            Table table = MetaUtil.getTableMeta(dataSource, tableName);
             AbstractGenCodeComponent.initContext(table, context);
             modes.forEach(mode -> GEN_CODE_COMPONENTS_MAP.getOrDefault(mode, new ArrayList<>())
                     .forEach(component -> component.genCode(table, context)));

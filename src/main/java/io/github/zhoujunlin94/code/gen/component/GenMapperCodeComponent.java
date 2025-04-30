@@ -5,9 +5,10 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Table;
 import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.Constant;
-import io.github.zhoujunlin94.code.gen.constant.Constant.Mapper;
 import io.github.zhoujunlin94.code.gen.constant.Constant.Entity;
+import io.github.zhoujunlin94.code.gen.constant.Constant.Mapper;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class GenMapperCodeComponent extends AbstractGenCodeComponent {
         String destPath = buildDestPath(context, context.get(Mapper.KEY_PACKAGE_NAME));
         FileUtil.mkdir(destPath);
         String mapperName = context.get(Mapper.MAPPER_NAME);
-        return destPath + StrUtil.SLASH + mapperName + StrUtil.DOT + Constant.JAVA;
+        return destPath + File.separator + mapperName + StrUtil.DOT + Constant.JAVA;
     }
 
     private List<String> importList(Setting context) {

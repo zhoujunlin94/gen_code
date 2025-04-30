@@ -8,6 +8,7 @@ import cn.hutool.setting.Setting;
 import io.github.zhoujunlin94.code.gen.constant.Constant;
 import io.github.zhoujunlin94.code.gen.constant.Constant.DTO;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class GenPageQueryDTOCodeComponent extends AbstractGenCodeComponent {
         String destPath = buildDestPath(context, context.get(DTO.DTO_PACKAGE));
         FileUtil.mkdir(destPath);
         String pageQueryDtoName = context.get(DTO.PAGE_QUERY_DTO_NAME);
-        return destPath + StrUtil.SLASH + pageQueryDtoName + StrUtil.DOT + Constant.JAVA;
+        return destPath + File.separator + pageQueryDtoName + StrUtil.DOT + Constant.JAVA;
     }
 
     @Override
