@@ -1,6 +1,9 @@
 # 表名  多个表明,号分隔
 tables = shop_order
 
+# base基本curd  endpoint接口
+mode = base,endpoint
+
 # Java代码存放目录
 SrcPath = /Users/zhoujunlin/work/code/github/gen_code/src/main/java
 

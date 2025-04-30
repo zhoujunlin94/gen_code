@@ -10,11 +10,9 @@ import ${importType};
 
 /**
  * @author ${Author}
- */
+*/
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Accessors(chain = true)
 @Table(name = "${TableName}")
 public class ${EntityName} {
 

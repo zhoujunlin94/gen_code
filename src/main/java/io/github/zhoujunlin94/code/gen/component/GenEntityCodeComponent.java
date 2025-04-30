@@ -62,10 +62,8 @@ public class GenEntityCodeComponent extends AbstractGenCodeComponent {
 
     private List<String> importList(Collection<Column> columns) {
         List<String> importList = new LinkedList<>();
-        importList.add("lombok.AllArgsConstructor");
-        importList.add("lombok.Builder");
         importList.add("lombok.Data");
-        importList.add("lombok.NoArgsConstructor");
+        importList.add("lombok.experimental.Accessors");
 
         importList.add("javax.persistence.Column");
         importList.add("javax.persistence.GeneratedValue");

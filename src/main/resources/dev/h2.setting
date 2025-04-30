@@ -1,3 +1,0 @@
-url = jdbc:h2:~/h2_data/gen_code;AUTO_SERVER=TRUE
-username = root
-password = #EDCvgy7
